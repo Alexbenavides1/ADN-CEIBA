@@ -1,6 +1,5 @@
 package com.ceiba.cita.controlador;
 
-import com.ceiba.afiliado.comando.ComandoAfiliadoAsignarCita;
 import com.ceiba.cita.comando.ComandoSolicitudAsignarCita;
 import com.ceiba.procedimiento.comando.ComandoProcedimientoAsignarCita;
 

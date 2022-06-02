@@ -25,7 +25,7 @@ public class ComandoControladorCita {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    @Operation(summary = "Pedido",description = "Metodo utilizado para aisgnar una cita")
+    @Operation(summary = "Cita",description = "Metodo utilizado para asignar una cita")
     public ComandoRespuesta<Long> asignar(@RequestBody ComandoSolicitudAsignarCita comandoSolicitudAsignarCita){
         return this.manejadorAsignarCita.ejecutar(comandoSolicitudAsignarCita);
     }

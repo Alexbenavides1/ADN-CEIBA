@@ -8,6 +8,8 @@ import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+
 @Repository
 public class RepositorioCitaMysql implements RepositorioCita {
 
@@ -26,6 +28,12 @@ public class RepositorioCitaMysql implements RepositorioCita {
 
     @SqlStatement(namespace = "cita", value="actualizarestado")
     private static String sqlActualizarEstado;
+
+    @SqlStatement(namespace = "cita", value="obtenercitasporjornadayfecha")
+    private static String sqlExisteDisponibilidadJornada;
+
+    @SqlStatement(namespace = "cita", value="obtenercitaspendienteporafiliado")
+    private static String sqlexisteCitaPendientePorAfiliado;
 
     public RepositorioCitaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, MapeoCita mapeoCita) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -77,5 +85,29 @@ public class RepositorioCitaMysql implements RepositorioCita {
 
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                         .update(sqlActualizarEstado,parameterSource);
+    }
+
+    @Override
+    public Integer existeDisponibilidadJornada(LocalDate fecha, String jornada) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("fecha",fecha.toString());
+        parameterSource.addValue("jornada",jornada);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlExisteDisponibilidadJornada,parameterSource,Integer.class);
+
+
+    }
+
+    @Override
+    public Integer existeCitaPendientePorAfiliado(String identificacion_afiliado) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("identificacion_afiliado",identificacion_afiliado);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlexisteCitaPendientePorAfiliado,parameterSource,Integer.class);
+
+
+
     }
 }

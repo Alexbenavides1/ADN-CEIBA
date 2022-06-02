@@ -1,7 +1,5 @@
 package com.ceiba.cita.comando;
 
-import com.ceiba.afiliado.comando.ComandoAfiliadoAsignarCita;
-import com.ceiba.procedimiento.comando.ComandoProcedimientoAsignarCita;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ComandoSolicitudAsignarCita {
 
-    private ComandoAfiliadoAsignarCita comandoAfiliadoAsignarCita;
-    private ComandoProcedimientoAsignarCita comandoProcedimientoAsignarCita;
+    private String identificacion_afiliado;
+    private String codigo_procedimiento;
     private LocalDate fecha;
     private String jornada;
 

@@ -3,9 +3,6 @@ package com.ceiba.configuracion;
 import com.ceiba.cita.puerto.repositorio.RepositorioCita;
 import com.ceiba.cita.servicio.ServicioAsignar;
 import com.ceiba.cita.servicio.ServicioCancelar;
-import com.ceiba.factura.puerto.repositorio.RepositorioFactura;
-import com.ceiba.factura.servicio.ServicioAnular;
-import com.ceiba.factura.servicio.ServicioFacturar;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

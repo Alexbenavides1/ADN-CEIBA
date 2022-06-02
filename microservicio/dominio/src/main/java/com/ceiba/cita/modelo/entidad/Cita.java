@@ -1,12 +1,16 @@
 package com.ceiba.cita.modelo.entidad;
 
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
-import com.ceiba.dominio.ValidadorArgumento;
+
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.procedimiento.modelo.entidad.Procedimiento;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+
 
 public class Cita {
 
@@ -101,10 +105,10 @@ public class Cita {
     }
 
     public static Cita crear(SolicitudAsignarCita solicitudAsignarCita){
-        ValidadorArgumento.validarObligatorio(solicitudAsignarCita.getAfiliado(),"El afiliado es requerido para asignar la cita");
-        ValidadorArgumento.validarObligatorio(solicitudAsignarCita.getProcedimiento(),"El procedimiento es requerido para asignar la cita");
-        ValidadorArgumento.validarObligatorio(solicitudAsignarCita.getFecha(),"La fecha es requerida para asignar la cita");
-        ValidadorArgumento.validarObligatorio(solicitudAsignarCita.getJornada(),"La jornada es requerida para asignar la cita");
+        validarObligatorio(solicitudAsignarCita.getAfiliado(),"El afiliado es requerido para asignar la cita");
+        validarObligatorio(solicitudAsignarCita.getProcedimiento(),"El procedimiento es requerido para asignar la cita");
+        validarObligatorio(solicitudAsignarCita.getFecha(),"La fecha es requerida para asignar la cita");
+        validarObligatorio(solicitudAsignarCita.getJornada(),"La jornada es requerida para asignar la cita");
 
         if(!esDiaHabil(solicitudAsignarCita.getFecha())){
             throw new ExcepcionValorInvalido("No se permiten citas los dias Sabado y Domingo");
@@ -115,16 +119,16 @@ public class Cita {
     }
 
     public static Cita reconstruir(Long id, LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento, double valor_copago, EstadoCita estado) {
-        ValidadorArgumento.validarObligatorio(id,"El id es requerido para asignar la cita");
-        ValidadorArgumento.validarObligatorio(fecha,"La fecha es requerida para asignar la cita");
+        validarObligatorio(id,"El id es requerido para asignar la cita");
+        validarObligatorio(fecha,"La fecha es requerida para asignar la cita");
 
         if(!esDiaHabil(fecha)){
             throw new ExcepcionValorInvalido("No se permiten citas los dias Sabado y Domingo");
         }
 
-        ValidadorArgumento.validarObligatorio(jornada,"La jornada es requerida para asignar la cita");
-        ValidadorArgumento.validarObligatorio(afiliado,"El afiliado es requerido para asignar la cita");
-        ValidadorArgumento.validarObligatorio(procedimiento,"El procedimiento es requerido para asignar la cita");
+        validarObligatorio(jornada,"La jornada es requerida para asignar la cita");
+        validarObligatorio(afiliado,"El afiliado es requerido para asignar la cita");
+        validarObligatorio(procedimiento,"El procedimiento es requerido para asignar la cita");
 
         if(valor_copago <= 0){
             throw new ExcepcionValorInvalido("El valor del copago no puede ser menor o igual a 0");
@@ -142,11 +146,11 @@ public class Cita {
     }
 
     private boolean esDiaPermitidoParaCancelar(LocalDate fecha) {
-        //DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-d");
-        //String fecha ="2022-05-20";
-        LocalDate fechaAnterior=fecha.minusDays(1);
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        if(fechaAnterior.equals(fecha) || fechaAnterior.isAfter(fecha) || !esDiaHabil(fecha)){
+        LocalDate fechaActual= LocalDate.parse(LocalDate.now().format(formato));
+
+        if(fechaActual.equals(fecha) || fechaActual.isAfter(fecha) || !esDiaHabil(fechaActual)){
             return false;
         }else{
             return true;
