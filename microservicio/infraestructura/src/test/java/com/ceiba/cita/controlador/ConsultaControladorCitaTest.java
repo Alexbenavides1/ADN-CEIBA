@@ -31,10 +31,12 @@ public class ConsultaControladorCitaTest {
         mocMvc.perform(get("/cita/pendientes")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("$[0].id", is(2)))
+                .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067111111")))
-                .andExpect(jsonPath("$[0].fecha", is("2022-06-01")))
-                .andExpect(jsonPath("$[0].codigo_procedimiento", is(34500.0)))
+                .andExpect(jsonPath("$[0].fecha", is("2022-06-13")))
+                .andExpect(jsonPath("$[0].jornada", is("M")))
+                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808081")))
+                .andExpect(jsonPath("$[0].valor_copago", is(34500.0)))
                 .andExpect(jsonPath("$[0].estado", is("PENDIENTE")));
     }
 
@@ -44,10 +46,55 @@ public class ConsultaControladorCitaTest {
         mocMvc.perform(get("/cita/canceladas")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067111111")))
-                .andExpect(jsonPath("$[0].fecha", is("2022-06-01")))
-                .andExpect(jsonPath("$[0].codigo_procedimiento", is(34500.0)))
+                .andExpect(jsonPath("$[0].id", is(2)))
+                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067222222")))
+                .andExpect(jsonPath("$[0].fecha", is("2022-06-14")))
+                .andExpect(jsonPath("$[0].jornada", is("T")))
+                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808082")))
+                .andExpect(jsonPath("$[0].valor_copago", is(69200)))
                 .andExpect(jsonPath("$[0].estado", is("CANCELADA")));
     }
+
+    @Test
+    void consultarCitaPorId() throws Exception {
+
+        mocMvc.perform(get("/cita/3")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("$[0].id", is(3)))
+                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067333333")))
+                .andExpect(jsonPath("$[0].fecha", is("2022-06-15")))
+                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808083")))
+                .andExpect(jsonPath("$[0].valor_copago", is(115000)))
+                .andExpect(jsonPath("$[0].estado", is("PENDIENTE")));
+    }
+    @Test
+    void consultarCitaPorAfiliado() throws Exception {
+
+        mocMvc.perform(get("/cita/afiliado/1067333333")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("$[0].id", is(3)))
+                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067333333")))
+                .andExpect(jsonPath("$[0].fecha", is("2022-06-15")))
+                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808083")))
+                .andExpect(jsonPath("$[0].valor_copago", is(115000)))
+                .andExpect(jsonPath("$[0].estado", is("PENDIENTE")));
+    }
+
+    @Test
+    void consultarCitaPorFecha() throws Exception {
+
+        mocMvc.perform(get("/cita/fecha/2022-06-15")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("$[0].id", is(3)))
+                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067333333")))
+                .andExpect(jsonPath("$[0].fecha", is("2022-06-15")))
+                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808083")))
+                .andExpect(jsonPath("$[0].valor_copago", is(115000)))
+                .andExpect(jsonPath("$[0].estado", is("PENDIENTE")));
+    }
+
+
 }
