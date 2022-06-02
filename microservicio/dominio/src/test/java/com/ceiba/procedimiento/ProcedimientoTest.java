@@ -17,7 +17,7 @@ public class ProcedimientoTest {
 
         Assertions.assertEquals("111222",procedimiento.getCodigo());
         Assertions.assertEquals("Procedimiento prueba",procedimiento.getNombre());
-        Assertions.assertEquals("300000",procedimiento.getValor());
+        Assertions.assertEquals(300000.0,procedimiento.getValor());
     }
 
     @Test

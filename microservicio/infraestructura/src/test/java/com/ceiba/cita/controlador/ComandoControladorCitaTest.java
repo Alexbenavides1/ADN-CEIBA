@@ -2,10 +2,6 @@ package com.ceiba.cita.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.cita.puerto.repositorio.RepositorioCita;
-import com.ceiba.factura.controlador.ComandoControladorFactura;
-import com.ceiba.factura.controlador.ComandoFacturarTestDataBuilder;
-import com.ceiba.factura.controlador.RespuestaFacturar;
-import com.ceiba.factura.puerto.repositorio.RepositorioFactura;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ComandoControladorFactura.class)
+@WebMvcTest(ComandoControladorCita.class)
 @ContextConfiguration(classes = ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ComandoControladorCitaTest {
@@ -52,11 +48,11 @@ public class ComandoControladorCitaTest {
 
         var citaGuardada = repositorioCita.obtener(respuesta.getValor());
 
-        Assertions.assertEquals("1067944244", citaGuardada.getAfiliado().getNumero_identifacion());
-        Assertions.assertEquals("808080", citaGuardada.getProcedimiento().getCodigo());
-        Assertions.assertEquals("2022-06-01", citaGuardada.getFecha());
+        Assertions.assertEquals("1067555555", citaGuardada.getAfiliado().getNumero_identificacion());
+        Assertions.assertEquals("808081", citaGuardada.getProcedimiento().getCodigo());
+        Assertions.assertEquals("2022-06-01", citaGuardada.getFecha().toString());
         Assertions.assertEquals("M", citaGuardada.getJornada());
-        Assertions.assertEquals(34500, citaGuardada.getValor_copago());
+        Assertions.assertEquals(51900.0, citaGuardada.getValor_copago());
 
 
     }

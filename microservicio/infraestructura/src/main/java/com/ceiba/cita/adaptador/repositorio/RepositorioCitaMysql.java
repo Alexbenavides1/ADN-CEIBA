@@ -45,7 +45,7 @@ public class RepositorioCitaMysql implements RepositorioCita {
     public Long guardar(Cita cita) {
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("identificacion_afiliado",cita.getAfiliado().getNumero_identifacion());
+        parameterSource.addValue("identificacion_afiliado",cita.getAfiliado().getNumero_identificacion());
         parameterSource.addValue("codigo_procedimiento",cita.getProcedimiento().getCodigo());
         parameterSource.addValue("fecha",cita.getFecha());
         parameterSource.addValue("jornada",cita.getJornada());

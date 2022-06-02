@@ -58,7 +58,7 @@ public class CitaTest {
                 .conId(1L)
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-05"))
+                .conFecha(LocalDate.parse("2022-06-10"))
                 .conJornada("M")
                 .conValorCopago(69000.0)
                 .conEstado(EstadoCita.PENDIENTE)
@@ -120,14 +120,14 @@ public class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-04"))
+                .conFecha(LocalDate.parse("2022-06-07"))
                 .conJornada("M")
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
         Assertions.assertEquals("M",cita.getJornada());
-        Assertions.assertEquals(121100,cita.getValor_copago());
+        Assertions.assertEquals(121100,Math.ceil(cita.getValor_copago()));
 
     }
 
@@ -149,7 +149,7 @@ public class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-04"))
+                .conFecha(LocalDate.parse("2022-06-08"))
                 .conJornada("T")
                 .crear();
 
@@ -178,7 +178,7 @@ public class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-05"))
+                .conFecha(LocalDate.parse("2022-06-08"))
                 .conJornada("M")
                 .crear();
 
@@ -207,7 +207,7 @@ public class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-05"))
+                .conFecha(LocalDate.parse("2022-06-09"))
                 .conJornada("T")
                 .crear();
 
@@ -263,7 +263,7 @@ public class CitaTest {
         BasePrueba.assertThrows(() -> new CitaTestDataBuilder().conCitaPorDefecto()
                         .conId(null)
                         .reconstruir(), ExcepcionValorObligatorio.class,
-                "El Id es requerido para asignar la cita");
+                "El id es requerido para asignar la cita");
     }
 
     @Test

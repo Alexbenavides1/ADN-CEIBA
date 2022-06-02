@@ -147,7 +147,8 @@ public class Cita {
 
     private boolean esDiaPermitidoParaCancelar(LocalDate fecha) {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+        //String fecha ="2022-05-20";
+        LocalDate fechaAnterior=fecha.minusDays(1);
         LocalDate fechaActual= LocalDate.parse(LocalDate.now().format(formato));
 
         if(fechaActual.equals(fecha) || fechaActual.isAfter(fecha) || !esDiaHabil(fechaActual)){

@@ -3,6 +3,7 @@ package com.ceiba.cita.servicio;
 import com.ceiba.cita.modelo.entidad.Cita;
 import com.ceiba.cita.modelo.entidad.SolicitudAsignarCita;
 import com.ceiba.cita.puerto.repositorio.RepositorioCita;
+import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 
 public class ServicioAsignar {
@@ -32,9 +33,9 @@ public class ServicioAsignar {
     }
 
     private void existeCitaPendientePorAfiliado(SolicitudAsignarCita solicitudAsignarCita){
-        Integer total = this.repositorioCita.existeCitaPendientePorAfiliado(solicitudAsignarCita.getAfiliado().getNumero_identifacion());
+        Integer total = this.repositorioCita.existeCitaPendientePorAfiliado(solicitudAsignarCita.getAfiliado().getNumero_identificacion());
         if(total>0){
-            throw new ExcepcionValorInvalido(EXISTE_CITA_PENDIENTE);
+            throw new ExcepcionDuplicidad(EXISTE_CITA_PENDIENTE);
         }
     }
 }

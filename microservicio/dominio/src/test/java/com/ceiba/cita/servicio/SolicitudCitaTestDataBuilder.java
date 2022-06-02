@@ -1,7 +1,9 @@
 package com.ceiba.cita.servicio;
 
+import com.ceiba.afiliado.AfiliadoTestDataBuilder;
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
 import com.ceiba.cita.modelo.entidad.SolicitudAsignarCita;
+import com.ceiba.procedimiento.ProcedimientoTestDataBuilder;
 import com.ceiba.procedimiento.modelo.entidad.Procedimiento;
 
 import java.time.LocalDate;
@@ -14,6 +16,10 @@ public class SolicitudCitaTestDataBuilder {
     private String jornada;
 
     public SolicitudCitaTestDataBuilder() {
+        this.fecha= LocalDate.parse("2022-06-10");
+        this.jornada="M";
+        this.afiliado=new AfiliadoTestDataBuilder().conAfiliadoPorDefecto().reconstruir();
+        this.procedimiento = new ProcedimientoTestDataBuilder().conProcedimientoPorDefecto().reconstruir();
     }
 
     public SolicitudCitaTestDataBuilder conAfiliado(Afiliado afiliado){
