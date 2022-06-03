@@ -72,7 +72,7 @@ pipeline {
             junit 'microservicio/dominio/build/test-results/test/*.xml'
         }
         failure {
-            echo 'El proceso ha falado'
+            echo 'El proceso ha fallado'
             mail (to: 'alex.benavides@ceiba.com.co', subject: "Failed Pipeline:${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}")
         }
     }
