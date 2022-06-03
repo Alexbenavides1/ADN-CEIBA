@@ -3,7 +3,7 @@ package com.ceiba.procedimiento;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ProcedimientoDTOtest {
+class ProcedimientoDTOTest {
 
     @Test
     void deberiaReconstruirProcedimientoDTOExitosamente(){

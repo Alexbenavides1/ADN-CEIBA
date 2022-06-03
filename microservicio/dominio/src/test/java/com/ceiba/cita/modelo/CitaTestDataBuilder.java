@@ -17,7 +17,7 @@ public class CitaTestDataBuilder {
     private String jornada;
     private Afiliado afiliado;
     private Procedimiento procedimiento;
-    private double valor_copago;
+    private double valorCopago;
     private EstadoCita estado;
 
     public CitaTestDataBuilder conCitaPorDefecto(){
@@ -26,7 +26,7 @@ public class CitaTestDataBuilder {
         this.jornada="M";
         this.afiliado=new AfiliadoTestDataBuilder().conAfiliadoPorDefecto().reconstruir();
         this.procedimiento = new ProcedimientoTestDataBuilder().conProcedimientoPorDefecto().reconstruir();
-        this.valor_copago=69000;
+        this.valorCopago=69000;
         this.estado=EstadoCita.PENDIENTE;
         return this;
     }
@@ -56,7 +56,7 @@ public class CitaTestDataBuilder {
     }
 
     public CitaTestDataBuilder conValorCopago(Double valor){
-        this.valor_copago=valor;
+        this.valorCopago=valor;
         return  this;
     }
 
@@ -74,6 +74,6 @@ public class CitaTestDataBuilder {
                 .build());
     }
     public Cita reconstruir(){
-        return Cita.reconstruir(id,fecha,jornada,afiliado,procedimiento,valor_copago,estado);
+        return Cita.reconstruir(id,fecha,jornada,afiliado,procedimiento,valorCopago,estado);
     }
 }

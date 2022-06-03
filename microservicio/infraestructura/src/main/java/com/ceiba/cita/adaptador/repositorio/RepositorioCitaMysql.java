@@ -68,15 +68,6 @@ public class RepositorioCitaMysql implements RepositorioCita {
     }
 
     @Override
-    public Cita obtenerPorIdentificacion(String numeroIdentificacion) {
-        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue(PARAMETRO_IDENTIFICACION,numeroIdentificacion);
-        return EjecucionBaseDeDatos.obtenerUnObjetoONull(() ->
-                this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlObtenerPorIdentificacion,parameterSource,mapeoCita));
-    }
-
-    @Override
     public void actualizarEstado(Cita cita) {
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();

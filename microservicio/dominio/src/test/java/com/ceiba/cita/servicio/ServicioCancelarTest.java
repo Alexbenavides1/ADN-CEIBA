@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-public class ServicioCancelarTest {
+class ServicioCancelarTest {
 
     @Test
     void deberiaCancelarLaCitaExitosamente() {

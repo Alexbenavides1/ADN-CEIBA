@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 
 import java.time.LocalDate;
 
-public class ServicioAsignarTest {
+class ServicioAsignarTest {
 
     @Test
     void deberiaAsignarCitaYGuardar(){
@@ -65,6 +65,7 @@ public class ServicioAsignarTest {
         RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
         Mockito.when(repositorioCita.guardar(Mockito.any())).thenReturn(1L);
         ServicioAsignar servicioAsignar = new ServicioAsignar(repositorioCita);
+
         //BasePrueba.assertThrows(() -> servicioAsignar.ejecutar(solicitudCita),ExcepcionDuplicidad.class,"No se puede asignar la cita porque el afiliado ya cuenta con una cita pendiente");
     }
 

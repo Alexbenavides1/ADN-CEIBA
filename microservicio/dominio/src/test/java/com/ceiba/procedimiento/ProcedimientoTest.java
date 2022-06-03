@@ -5,7 +5,7 @@ import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ProcedimientoTest {
+class ProcedimientoTest {
 
     @Test
     void deberiaCrearProcedimientoExitoso(){
