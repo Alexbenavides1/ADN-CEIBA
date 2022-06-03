@@ -54,7 +54,7 @@ pipeline {
                 echo '------------>Análisis de código estático<------------'
                 sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:adnceiba.citasips.alex.benavides',
             sonarName:'"CeibaADN-AdnCeibaCitasIps(alex.benavides)"',
-            sonarPathProperties:'./microservicio/sonar-project.properties')
+            sonarPathProperties:'./sonar-project.properties')
             }
         }
 
