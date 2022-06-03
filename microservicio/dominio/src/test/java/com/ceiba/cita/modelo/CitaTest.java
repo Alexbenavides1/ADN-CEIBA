@@ -42,7 +42,7 @@ public class CitaTest {
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
         Assertions.assertEquals("M",cita.getJornada());
-        Assertions.assertEquals(57500,cita.getValor_copago());
+        Assertions.assertEquals(57500,cita.getValorCopago());
 
     }
 
@@ -68,7 +68,7 @@ public class CitaTest {
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
         Assertions.assertEquals("M",cita.getJornada());
-        Assertions.assertEquals(69000.0,cita.getValor_copago());
+        Assertions.assertEquals(69000.0,cita.getValorCopago());
         Assertions.assertTrue(cita.esPendiente());
         Assertions.assertFalse(cita.esCancelada());
     }
@@ -98,7 +98,7 @@ public class CitaTest {
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
         Assertions.assertEquals("T",cita.getJornada());
-        Assertions.assertEquals(272924,cita.getValor_copago());
+        Assertions.assertEquals(272924,cita.getValorCopago());
 
     }
 
@@ -127,7 +127,7 @@ public class CitaTest {
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
         Assertions.assertEquals("M",cita.getJornada());
-        Assertions.assertEquals(121100,Math.ceil(cita.getValor_copago()));
+        Assertions.assertEquals(121100,Math.ceil(cita.getValorCopago()));
 
     }
 
@@ -156,7 +156,7 @@ public class CitaTest {
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
         Assertions.assertEquals("T",cita.getJornada());
-        Assertions.assertEquals(1093597,cita.getValor_copago());
+        Assertions.assertEquals(1093597,cita.getValorCopago());
 
     }
 
@@ -185,7 +185,7 @@ public class CitaTest {
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
         Assertions.assertEquals("M",cita.getJornada());
-        Assertions.assertEquals(149500,cita.getValor_copago());
+        Assertions.assertEquals(149500,cita.getValorCopago());
 
     }
 
@@ -214,7 +214,7 @@ public class CitaTest {
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
         Assertions.assertEquals("T",cita.getJornada());
-        Assertions.assertEquals(2187195,cita.getValor_copago());
+        Assertions.assertEquals(2187195,cita.getValorCopago());
 
     }
 

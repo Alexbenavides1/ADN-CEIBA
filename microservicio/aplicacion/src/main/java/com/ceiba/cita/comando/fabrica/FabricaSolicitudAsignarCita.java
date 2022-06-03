@@ -19,8 +19,8 @@ public class FabricaSolicitudAsignarCita {
 
     public SolicitudAsignarCita crear(ComandoSolicitudAsignarCita comandoSolicitudAsignarCita){
 
-        return new SolicitudAsignarCita(repositorioAfiliado.obtenerAfiliado(comandoSolicitudAsignarCita.getIdentificacion_afiliado()),
-                repositorioProcedimiento.obtener(comandoSolicitudAsignarCita.getCodigo_procedimiento()),
+        return new SolicitudAsignarCita(repositorioAfiliado.obtenerAfiliado(comandoSolicitudAsignarCita.getIdentificacionAfiliado()),
+                repositorioProcedimiento.obtener(comandoSolicitudAsignarCita.getCodigoProcedimiento()),
                 comandoSolicitudAsignarCita.getFecha(),
                 comandoSolicitudAsignarCita.getJornada()
                 );

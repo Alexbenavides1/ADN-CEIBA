@@ -30,7 +30,7 @@ public class ConsultaControladorAfiliadoTest {
         mockMvc.perform(get("/afiliado")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("$[0].numero_identificacion",is("1067111111")))
+                .andExpect(jsonPath("$[0].numeroIdentificacion",is("1067111111")))
                 .andExpect(jsonPath("$[0].nombre",is("Juan Perez")))
                 .andExpect(jsonPath("$[0].nivel",is(1)));
 

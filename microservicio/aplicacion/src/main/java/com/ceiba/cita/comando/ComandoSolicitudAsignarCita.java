@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ComandoSolicitudAsignarCita {
 
-    private String identificacion_afiliado;
-    private String codigo_procedimiento;
+    private String identificacionAfiliado;
+    private String codigoProcedimiento;
     private LocalDate fecha;
     private String jornada;
 

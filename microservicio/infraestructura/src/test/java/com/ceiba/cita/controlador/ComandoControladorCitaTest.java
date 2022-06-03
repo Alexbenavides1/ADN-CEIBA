@@ -48,11 +48,11 @@ public class ComandoControladorCitaTest {
 
         var citaGuardada = repositorioCita.obtener(respuesta.getValor());
 
-        Assertions.assertEquals("1067555555", citaGuardada.getAfiliado().getNumero_identificacion());
+        Assertions.assertEquals("1067555555", citaGuardada.getAfiliado().getNumeroIdentificacion());
         Assertions.assertEquals("808081", citaGuardada.getProcedimiento().getCodigo());
         Assertions.assertEquals("2022-06-01", citaGuardada.getFecha().toString());
         Assertions.assertEquals("M", citaGuardada.getJornada());
-        Assertions.assertEquals(51900.0, citaGuardada.getValor_copago());
+        Assertions.assertEquals(51900.0, citaGuardada.getValorCopago());
 
 
     }

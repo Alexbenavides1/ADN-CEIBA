@@ -32,11 +32,11 @@ public class ConsultaControladorCitaTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067111111")))
+                .andExpect(jsonPath("$[0].numeroIdentificacion", is("1067111111")))
                 .andExpect(jsonPath("$[0].fecha", is("2022-06-13")))
                 .andExpect(jsonPath("$[0].jornada", is("M")))
-                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808081")))
-                .andExpect(jsonPath("$[0].valor_copago", is(34500.0)))
+                .andExpect(jsonPath("$[0].codigoProcedimiento", is("808081")))
+                .andExpect(jsonPath("$[0].valorCopago", is(34500.0)))
                 .andExpect(jsonPath("$[0].estado", is("PENDIENTE")));
     }
 
@@ -47,11 +47,11 @@ public class ConsultaControladorCitaTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$[0].id", is(2)))
-                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067222222")))
+                .andExpect(jsonPath("$[0].numeroIdentificacion", is("1067222222")))
                 .andExpect(jsonPath("$[0].fecha", is("2022-06-14")))
                 .andExpect(jsonPath("$[0].jornada", is("T")))
-                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808082")))
-                .andExpect(jsonPath("$[0].valor_copago", is(69200.0)))
+                .andExpect(jsonPath("$[0].codigoProcedimiento", is("808082")))
+                .andExpect(jsonPath("$[0].valorCopago", is(69200.0)))
                 .andExpect(jsonPath("$[0].estado", is("CANCELADA")));
     }
 
@@ -62,10 +62,10 @@ public class ConsultaControladorCitaTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$[0].id", is(3)))
-                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067333333")))
+                .andExpect(jsonPath("$[0].numeroIdentificacion", is("1067333333")))
                 .andExpect(jsonPath("$[0].fecha", is("2022-06-15")))
-                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808083")))
-                .andExpect(jsonPath("$[0].valor_copago", is(115000.0)))
+                .andExpect(jsonPath("$[0].codigoProcedimiento", is("808083")))
+                .andExpect(jsonPath("$[0].valorCopago", is(115000.0)))
                 .andExpect(jsonPath("$[0].estado", is("PENDIENTE")));
     }
     @Test
@@ -75,10 +75,10 @@ public class ConsultaControladorCitaTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$[0].id", is(3)))
-                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067333333")))
+                .andExpect(jsonPath("$[0].numeroIdentificacion", is("1067333333")))
                 .andExpect(jsonPath("$[0].fecha", is("2022-06-15")))
-                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808083")))
-                .andExpect(jsonPath("$[0].valor_copago", is(115000.0)))
+                .andExpect(jsonPath("$[0].codigoProcedimiento", is("808083")))
+                .andExpect(jsonPath("$[0].valorCopago", is(115000.0)))
                 .andExpect(jsonPath("$[0].estado", is("PENDIENTE")));
     }
 
@@ -89,10 +89,10 @@ public class ConsultaControladorCitaTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$[0].id", is(3)))
-                .andExpect(jsonPath("$[0].identificacion_afiliado", is("1067333333")))
+                .andExpect(jsonPath("$[0].numeroIdentificacion", is("1067333333")))
                 .andExpect(jsonPath("$[0].fecha", is("2022-06-15")))
-                .andExpect(jsonPath("$[0].codigo_procedimiento", is("808083")))
-                .andExpect(jsonPath("$[0].valor_copago", is(115000.0)))
+                .andExpect(jsonPath("$[0].codigoProcedimiento", is("808083")))
+                .andExpect(jsonPath("$[0].valorCopago", is(115000.0)))
                 .andExpect(jsonPath("$[0].estado", is("PENDIENTE")));
     }
 

@@ -12,6 +12,6 @@ public interface DaoCita {
 
     List<ResumenCitaDTO> obtenerCitaPorId(Long id);
 
-    List<ResumenCitaDTO> obtenerCitasPorAfiliado(String identificacion_afiliado);
+    List<ResumenCitaDTO> obtenerCitasPorAfiliado(String identificacionAfiliado);
     List<ResumenCitaDTO> obtenerCitasPorFecha(LocalDate fecha);
 }

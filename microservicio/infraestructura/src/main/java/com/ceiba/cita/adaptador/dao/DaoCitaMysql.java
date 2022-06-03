@@ -59,9 +59,9 @@ public class DaoCitaMysql implements DaoCita {
     }
 
     @Override
-    public List<ResumenCitaDTO> obtenerCitasPorAfiliado(String identificacion_afiliado) {
+    public List<ResumenCitaDTO> obtenerCitasPorAfiliado(String identificacionAfiliado) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("identificacion_afiliado",identificacion_afiliado);
+        parameterSource.addValue("identificacion_afiliado",identificacionAfiliado);
         return this.customNamedParameterJdbcTemplate
                 .getNamedParameterJdbcTemplate()
                 .query(sqlObtenerCitasPorAfiliado,parameterSource,mapeoCitaResumen);

@@ -14,7 +14,7 @@ public class ManejadorConsultarCitasPorAfiliado {
         this.daoCita = daoCita;
     }
 
-    public List<ResumenCitaDTO> ejecutar(String identificacion_afiliado){
-        return daoCita.obtenerCitasPorAfiliado(identificacion_afiliado);
+    public List<ResumenCitaDTO> ejecutar(String identificacionAfiliado){
+        return daoCita.obtenerCitasPorAfiliado(identificacionAfiliado);
     }
 }

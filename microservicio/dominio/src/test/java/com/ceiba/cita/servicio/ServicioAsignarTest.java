@@ -53,7 +53,7 @@ public class ServicioAsignarTest {
         Mockito.verify(repositorioCita, Mockito.times(1)).guardar(captorCita.capture());
         Assertions.assertEquals(afiliado, captorCita.getValue().getAfiliado());
         Assertions.assertEquals(procedimiento, captorCita.getValue().getProcedimiento());
-        Assertions.assertEquals(51750, captorCita.getValue().getValor_copago());
+        Assertions.assertEquals(51750, captorCita.getValue().getValorCopago());
         Assertions.assertEquals(1l, idCitaCreada);
     }
 

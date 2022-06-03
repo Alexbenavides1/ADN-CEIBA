@@ -22,9 +22,9 @@ public class RepositorioAfiliadoMysql implements RepositorioAfiliado {
 
 
     @Override
-    public Afiliado obtenerAfiliado(String numero_identificacion) {
+    public Afiliado obtenerAfiliado(String numeroIdentificacion) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("numero_identificacion",numero_identificacion);
+        parameterSource.addValue("numero_identificacion",numeroIdentificacion);
 
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() ->
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()

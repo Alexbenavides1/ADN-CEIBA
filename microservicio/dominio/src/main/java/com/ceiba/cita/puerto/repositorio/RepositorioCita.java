@@ -8,8 +8,8 @@ public interface RepositorioCita {
 
     Long guardar(Cita cita);
     Cita obtener(Long id);
-    Cita obtenerPorIdentificacion(String numero_identificacion);
+    Cita obtenerPorIdentificacion(String numeroIdentificacion);
     void actualizarEstado(Cita cita);
     Integer existeDisponibilidadJornada(LocalDate fecha,String jornada);
-    Integer existeCitaPendientePorAfiliado(String identificacion_afiliado);
+    Integer existeCitaPendientePorAfiliado(String identificacionAfiliado);
 }

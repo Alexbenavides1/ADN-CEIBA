@@ -11,12 +11,12 @@ import java.time.LocalDate;
 public class ResumenCitaDTO {
 
     private Long id;
-    private String identificacion_afiliado;
-    private String nombre_afiliado;
-    private String codigo_procedimiento;
-    private String nombre_procedimiento;
+    private String numeroIdentificacion;
+    private String nombreAfiliado;
+    private String codigoProcedimiento;
+    private String nombreProcedimiento;
     private LocalDate fecha;
     private String jornada;
-    private Double valor_copago;
+    private Double valorCopago;
     private EstadoCita estado;
 }

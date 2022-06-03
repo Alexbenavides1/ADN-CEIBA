@@ -15,7 +15,7 @@ public class AfiliadoTest {
                 .conNivel(1)
                 .reconstruir();
 
-        Assertions.assertEquals("1067901901",afiliado.getNumero_identificacion());
+        Assertions.assertEquals("1067901901",afiliado.getNumeroIdentificacion());
         Assertions.assertEquals("Afiliado prueba",afiliado.getNombre());
         Assertions.assertEquals(1,afiliado.getNivel());
     }

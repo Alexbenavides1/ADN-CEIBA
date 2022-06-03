@@ -33,7 +33,7 @@ public class ServicioAsignar {
     }
 
     private void existeCitaPendientePorAfiliado(SolicitudAsignarCita solicitudAsignarCita){
-        Integer total = this.repositorioCita.existeCitaPendientePorAfiliado(solicitudAsignarCita.getAfiliado().getNumero_identificacion());
+        Integer total = this.repositorioCita.existeCitaPendientePorAfiliado(solicitudAsignarCita.getAfiliado().getNumeroIdentificacion());
         if(total>0){
             throw new ExcepcionDuplicidad(EXISTE_CITA_PENDIENTE);
         }

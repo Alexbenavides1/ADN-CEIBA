@@ -26,7 +26,7 @@ public class Cita {
     private String jornada;
     private Afiliado afiliado;
     private Procedimiento procedimiento;
-    private double valor_copago;
+    private double valorCopago;
     private EstadoCita estado;
 
     public Cita( LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento) {
@@ -34,17 +34,17 @@ public class Cita {
         this.jornada = jornada;
         this.afiliado = afiliado;
         this.procedimiento = procedimiento;
-        this.valor_copago = calcularValorCopago(afiliado.getNivel(),procedimiento.getValor());
+        this.valorCopago = calcularValorCopago(afiliado.getNivel(),procedimiento.getValor());
         this.estado=EstadoCita.PENDIENTE;
     }
 
-    public Cita(Long id, LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento, double valor_copago, EstadoCita estado) {
+    public Cita(Long id, LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento, double valorCopago, EstadoCita estado) {
         this.id = id;
         this.fecha = fecha;
         this.jornada = jornada;
         this.afiliado = afiliado;
         this.procedimiento = procedimiento;
-        this.valor_copago = valor_copago;
+        this.valorCopago = valorCopago;
         this.estado = estado;
     }
 
@@ -68,39 +68,39 @@ public class Cita {
         return procedimiento;
     }
 
-    public double getValor_copago() {
-        return valor_copago;
+    public double getValorCopago() {
+        return valorCopago;
     }
 
     public EstadoCita getEstado() {
         return estado;
     }
 
-    public double calcularValorCopago(int nivel, Double valor_procedimiento) {
+    public double calcularValorCopago(int nivel, Double valorProcedimiento) {
         switch (nivel){
             case 1:
-                return calcularCopagoNivel1(valor_procedimiento);
+                return calcularCopagoNivel1(valorProcedimiento);
             case 2:
-                return calcularCopagoNivel2(valor_procedimiento);
+                return calcularCopagoNivel2(valorProcedimiento);
             case 3:
-                return calcularCopagoNivel3(valor_procedimiento);
+                return calcularCopagoNivel3(valorProcedimiento);
             default:
                 return 0;
         }
     }
 
-    public double calcularCopagoNivel1(Double valor_procedimiento){
-        double copagoProcedimiento=valor_procedimiento * PORCENTAJE_NIVEL_1;
+    public double calcularCopagoNivel1(Double valorProcedimiento){
+        double copagoProcedimiento=valorProcedimiento * PORCENTAJE_NIVEL_1;
         return copagoProcedimiento > TOPE_MAXIMO_NIVEL_1 ? TOPE_MAXIMO_NIVEL_1 : copagoProcedimiento;
     }
 
-    public double calcularCopagoNivel2(Double valor_procedimiento){
-        double copagoProcedimiento=valor_procedimiento * PORCENTAJE_NIVEL_2;
+    public double calcularCopagoNivel2(Double valorProcedimiento){
+        double copagoProcedimiento=valorProcedimiento * PORCENTAJE_NIVEL_2;
         return copagoProcedimiento > TOPE_MAXIMO_NIVEL_2 ? TOPE_MAXIMO_NIVEL_2 : copagoProcedimiento;
     }
 
-    public double calcularCopagoNivel3(Double valor_procedimiento){
-        double copagoProcedimiento=valor_procedimiento * PORCENTAJE_NIVEL_3;
+    public double calcularCopagoNivel3(Double valorProcedimiento){
+        double copagoProcedimiento=valorProcedimiento * PORCENTAJE_NIVEL_3;
         return copagoProcedimiento > TOPE_MAXIMO_NIVEL_3 ? TOPE_MAXIMO_NIVEL_3 : copagoProcedimiento;
     }
 
@@ -118,7 +118,7 @@ public class Cita {
 
     }
 
-    public static Cita reconstruir(Long id, LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento, double valor_copago, EstadoCita estado) {
+    public static Cita reconstruir(Long id, LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento, double valorCopago, EstadoCita estado) {
         validarObligatorio(id,"El id es requerido para asignar la cita");
         validarObligatorio(fecha,"La fecha es requerida para asignar la cita");
 
@@ -130,11 +130,11 @@ public class Cita {
         validarObligatorio(afiliado,"El afiliado es requerido para asignar la cita");
         validarObligatorio(procedimiento,"El procedimiento es requerido para asignar la cita");
 
-        if(valor_copago <= 0){
+        if(valorCopago <= 0){
             throw new ExcepcionValorInvalido("El valor del copago no puede ser menor o igual a 0");
         }
 
-        return new Cita(id,fecha,jornada,afiliado,procedimiento,valor_copago,estado);
+        return new Cita(id,fecha,jornada,afiliado,procedimiento,valorCopago,estado);
     }
 
     public void cancelar(){
@@ -147,24 +147,20 @@ public class Cita {
 
     private boolean esDiaPermitidoParaCancelar(LocalDate fecha) {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        //String fecha ="2022-05-20";
-        LocalDate fechaAnterior=fecha.minusDays(1);
         LocalDate fechaActual= LocalDate.parse(LocalDate.now().format(formato));
-
+        boolean res=true;
         if(fechaActual.equals(fecha) || fechaActual.isAfter(fecha) || !esDiaHabil(fechaActual)){
-            return false;
-        }else{
-            return true;
+            res= false;
         }
+        return res;
     }
 
     public static boolean esDiaHabil(LocalDate fecha){
-        if(fecha.getDayOfWeek() == DayOfWeek.SATURDAY || fecha.getDayOfWeek() == DayOfWeek.SUNDAY){
-            return false;
+        boolean res=true;
+        if (fecha.getDayOfWeek() == DayOfWeek.SATURDAY || fecha.getDayOfWeek() == DayOfWeek.SUNDAY) {
+         res=false;
         }
-        else{
-            return true;
-        }
+       return res;
     }
 
     public boolean esCancelada(){

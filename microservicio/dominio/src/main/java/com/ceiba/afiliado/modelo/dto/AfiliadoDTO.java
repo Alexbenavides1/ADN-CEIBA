@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class AfiliadoDTO {
 
-    private String numero_identificacion;
+    private String numeroIdentificacion;
     private String nombre;
     private  int nivel;
 

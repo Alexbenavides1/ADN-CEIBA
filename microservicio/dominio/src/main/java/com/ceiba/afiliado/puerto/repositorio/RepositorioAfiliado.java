@@ -4,5 +4,5 @@ import com.ceiba.afiliado.modelo.entidad.Afiliado;
 
 public interface RepositorioAfiliado {
 
-    Afiliado obtenerAfiliado(String numero_identificacion);
+    Afiliado obtenerAfiliado(String numeroIdentificacion);
 }

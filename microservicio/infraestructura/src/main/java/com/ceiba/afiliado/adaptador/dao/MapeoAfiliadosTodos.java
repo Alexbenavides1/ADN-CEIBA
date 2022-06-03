@@ -15,10 +15,10 @@ public class MapeoAfiliadosTodos implements RowMapper<AfiliadoDTO>, MapperResult
     @Override
     public AfiliadoDTO mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
-        var numero_identificacion=resultSet.getString("numero_identificacion");
+        var numeroIdentificacion=resultSet.getString("numero_identificacion");
         var nombre=resultSet.getString("nombre");
         var nivel=resultSet.getInt("nivel");
 
-        return new AfiliadoDTO(numero_identificacion,nombre,nivel);
+        return new AfiliadoDTO(numeroIdentificacion,nombre,nivel);
     }
 }

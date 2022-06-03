@@ -12,7 +12,7 @@ public class AfiliadoDTOTest {
                 .conNombre("Alex Benavides")
                 .conNivel(2)
                 .reconstruir();
-        Assertions.assertEquals("1067000123",afiliadoDTO.getNumero_identificacion());
+        Assertions.assertEquals("1067000123",afiliadoDTO.getNumeroIdentificacion());
         Assertions.assertEquals("Alex Benavides",afiliadoDTO.getNombre());
         Assertions.assertEquals(2,afiliadoDTO.getNivel());
     }

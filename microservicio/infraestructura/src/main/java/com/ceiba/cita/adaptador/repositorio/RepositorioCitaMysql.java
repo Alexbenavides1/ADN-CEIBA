@@ -17,6 +17,8 @@ public class RepositorioCitaMysql implements RepositorioCita {
 
     private final MapeoCita mapeoCita;
 
+    private static final String PARAMETRO_IDENTIFICACION = "identificacion_afiliado";
+
     @SqlStatement(namespace = "cita", value="crear")
     private static String sqlCrear;
 
@@ -45,16 +47,14 @@ public class RepositorioCitaMysql implements RepositorioCita {
     public Long guardar(Cita cita) {
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("identificacion_afiliado",cita.getAfiliado().getNumero_identificacion());
+        parameterSource.addValue(PARAMETRO_IDENTIFICACION,cita.getAfiliado().getNumeroIdentificacion());
         parameterSource.addValue("codigo_procedimiento",cita.getProcedimiento().getCodigo());
         parameterSource.addValue("fecha",cita.getFecha());
         parameterSource.addValue("jornada",cita.getJornada());
-        parameterSource.addValue("valor_copago",cita.getValor_copago());
+        parameterSource.addValue("valor_copago",cita.getValorCopago());
         parameterSource.addValue("estado",cita.getEstado().name());
 
-        Long idCitaGuardada= this.customNamedParameterJdbcTemplate.crear(parameterSource,sqlCrear);
-
-        return idCitaGuardada;
+        return  this.customNamedParameterJdbcTemplate.crear(parameterSource,sqlCrear);
 
     }
 
@@ -68,9 +68,9 @@ public class RepositorioCitaMysql implements RepositorioCita {
     }
 
     @Override
-    public Cita obtenerPorIdentificacion(String numero_identificacion) {
+    public Cita obtenerPorIdentificacion(String numeroIdentificacion) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("identificacion_afiliado",numero_identificacion);
+        parameterSource.addValue(PARAMETRO_IDENTIFICACION,numeroIdentificacion);
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() ->
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                         .queryForObject(sqlObtenerPorIdentificacion,parameterSource,mapeoCita));
@@ -100,9 +100,9 @@ public class RepositorioCitaMysql implements RepositorioCita {
     }
 
     @Override
-    public Integer existeCitaPendientePorAfiliado(String identificacion_afiliado) {
+    public Integer existeCitaPendientePorAfiliado(String identificacionAfiliado) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("identificacion_afiliado",identificacion_afiliado);
+        parameterSource.addValue(PARAMETRO_IDENTIFICACION,identificacionAfiliado);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlexisteCitaPendientePorAfiliado,parameterSource,Integer.class);
