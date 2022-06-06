@@ -17,7 +17,7 @@ public class MapeoAfiliadosTodos implements RowMapper<AfiliadoDTO>, MapperResult
 
         var numeroIdentificacion=resultSet.getString("numero_identificacion");
         var nombre=resultSet.getString("nombre");
-        var nivel=resultSet.getInt("nivel");
+        var nivel=resultSet.getString("nivel");
 
         return new AfiliadoDTO(numeroIdentificacion,nombre,nivel);
     }

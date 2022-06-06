@@ -50,8 +50,8 @@ class ComandoControladorCitaTest {
 
         Assertions.assertEquals("1067555555", citaGuardada.getAfiliado().getNumeroIdentificacion());
         Assertions.assertEquals("808081", citaGuardada.getProcedimiento().getCodigo());
-        Assertions.assertEquals("2022-06-01", citaGuardada.getFecha().toString());
-        Assertions.assertEquals("M", citaGuardada.getJornada());
+        Assertions.assertEquals("2022-06-10", citaGuardada.getFecha().toString());
+        Assertions.assertEquals("M", citaGuardada.getJornada().name());
         Assertions.assertEquals(51900.0, citaGuardada.getValorCopago());
 
 

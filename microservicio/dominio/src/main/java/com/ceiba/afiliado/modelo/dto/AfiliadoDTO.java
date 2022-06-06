@@ -9,6 +9,6 @@ public class AfiliadoDTO {
 
     private String numeroIdentificacion;
     private String nombre;
-    private  int nivel;
+    private  String nivel;
 
 }

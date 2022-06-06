@@ -18,7 +18,7 @@ public class ComandoAsignarCitaTestDataBuilder {
 
         this.identificacion_afiliado="1067555555";
         this.codigo_prodedimiento="808081";
-        this.fecha=LocalDate.parse("2022-06-01");
+        this.fecha=LocalDate.parse("2022-06-10");
         this.jornada="M";
         return this;
     }

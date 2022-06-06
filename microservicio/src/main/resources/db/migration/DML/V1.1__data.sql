@@ -17,6 +17,4 @@ INSERT INTO procedimiento (codigo,nombre,valor) VALUES ('808085','Escleroterapia
 INSERT INTO procedimiento (codigo,nombre,valor) VALUES ('808086','Electrolisis para eliminar el vello',390000);
 INSERT INTO procedimiento (codigo,nombre,valor) VALUES ('808087','Inyecciones de relleno',630000);
 
-INSERT INTO cita (id,fecha,jornada,identificacion_afiliado,codigo_procedimiento,valor_copago,estado) VALUES (1,'2022-06-13','M','1067111111','808081',34500,'PENDIENTE');
-
 

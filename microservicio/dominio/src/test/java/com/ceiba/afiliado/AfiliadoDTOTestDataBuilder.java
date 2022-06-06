@@ -1,17 +1,18 @@
 package com.ceiba.afiliado;
 
 import com.ceiba.afiliado.modelo.dto.AfiliadoDTO;
+import com.ceiba.afiliado.modelo.entidad.NivelAfiliado;
 
 public class AfiliadoDTOTestDataBuilder {
 
     private  String numero_identifacion;
     private  String nombre;
-    private int nivel;
+    private String nivel;
 
     public AfiliadoDTOTestDataBuilder conAfiliadoDTOPorDefecto(){
         this.numero_identifacion="123000123";
         this.nombre="Afiliado 2";
-        this.nivel=1;
+        this.nivel= NivelAfiliado.NIVEL_I.name();
         return this;
     }
 
@@ -29,7 +30,7 @@ public class AfiliadoDTOTestDataBuilder {
         return this;
     }
 
-    public AfiliadoDTOTestDataBuilder conNivel(int nivel){
+    public AfiliadoDTOTestDataBuilder conNivel(String nivel){
         this.nivel=nivel;
         return  this;
     }

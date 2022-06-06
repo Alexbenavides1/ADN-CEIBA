@@ -1,6 +1,7 @@
 package com.ceiba.afiliado.controlador;
 
 import com.ceiba.ApplicationMock;
+import com.ceiba.afiliado.modelo.entidad.NivelAfiliado;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ class ConsultaControladorAfiliadoTest {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$[0].numeroIdentificacion",is("1067111111")))
                 .andExpect(jsonPath("$[0].nombre",is("Juan Perez")))
-                .andExpect(jsonPath("$[0].nivel",is(1)));
+                .andExpect(jsonPath("$[0].nivel",is(NivelAfiliado.NIVEL_I.name())));
 
     }
 }
