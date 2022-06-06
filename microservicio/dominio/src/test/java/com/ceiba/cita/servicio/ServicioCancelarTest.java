@@ -1,7 +1,7 @@
 package com.ceiba.cita.servicio;
 
 import com.ceiba.BasePrueba;
-import com.ceiba.cita.modelo.CitaTestDataBuilder;
+import com.ceiba.cita.modelo.entidad.CitaTestDataBuilder;
 import com.ceiba.cita.modelo.entidad.Cita;
 import com.ceiba.cita.puerto.repositorio.RepositorioCita;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;

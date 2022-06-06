@@ -1,11 +1,9 @@
-package com.ceiba.cita.modelo;
+package com.ceiba.cita.modelo.entidad;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.afiliado.AfiliadoTestDataBuilder;
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
 import com.ceiba.afiliado.modelo.entidad.NivelAfiliado;
-import com.ceiba.cita.modelo.entidad.EstadoCita;
-import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.procedimiento.ProcedimientoTestDataBuilder;

@@ -1,10 +1,7 @@
-package com.ceiba.cita.modelo;
+package com.ceiba.cita.modelo.entidad;
 
 import com.ceiba.afiliado.AfiliadoTestDataBuilder;
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
-import com.ceiba.cita.modelo.entidad.Cita;
-import com.ceiba.cita.modelo.entidad.EstadoCita;
-import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.cita.servicio.SolicitudCitaTestDataBuilder;
 import com.ceiba.procedimiento.ProcedimientoTestDataBuilder;
 import com.ceiba.procedimiento.modelo.entidad.Procedimiento;
