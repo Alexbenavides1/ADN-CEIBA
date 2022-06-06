@@ -23,7 +23,7 @@ public class FabricaSolicitudAsignarCita {
         return new SolicitudAsignarCita(repositorioAfiliado.obtenerAfiliado(comandoSolicitudAsignarCita.getIdentificacionAfiliado()),
                 repositorioProcedimiento.obtener(comandoSolicitudAsignarCita.getCodigoProcedimiento()),
                 comandoSolicitudAsignarCita.getFecha(),
-                JornadaCita.valueOf(comandoSolicitudAsignarCita.getJornadaCita())
+                comandoSolicitudAsignarCita.getJornadaCita()
                 );
     }
 }

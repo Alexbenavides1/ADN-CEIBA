@@ -123,11 +123,11 @@ public class Cita {
             throw new ExcepcionValorInvalido("No se permiten citas los dias Sabado y Domingo");
         }
 
-        return new Cita(solicitudAsignarCita.getFecha(), solicitudAsignarCita.getJornadaCita(), solicitudAsignarCita.getAfiliado(), solicitudAsignarCita.getProcedimiento());
+        return new Cita(solicitudAsignarCita.getFecha(), JornadaCita.valueOf(solicitudAsignarCita.getJornadaCita()), solicitudAsignarCita.getAfiliado(), solicitudAsignarCita.getProcedimiento());
 
     }
 
-    public static Cita reconstruir(Long id, LocalDate fecha, JornadaCita jornadaCita, Afiliado afiliado, Procedimiento procedimiento, double valorCopago, EstadoCita estado) {
+    public static Cita reconstruir(Long id, LocalDate fecha, String jornadaCita, Afiliado afiliado, Procedimiento procedimiento, double valorCopago, EstadoCita estado) {
         validarObligatorio(id,"El id es requerido para asignar la cita");
         validarObligatorio(fecha,"La fecha es requerida para asignar la cita");
 
@@ -147,7 +147,7 @@ public class Cita {
             throw new ExcepcionValorInvalido("El valor del copago no puede ser menor o igual a 0");
         }
 
-        return new Cita(id,fecha,jornadaCita,afiliado,procedimiento,valorCopago,estado);
+        return new Cita(id,fecha,JornadaCita.valueOf(jornadaCita),afiliado,procedimiento,valorCopago,estado);
     }
 
     public void cancelar(){

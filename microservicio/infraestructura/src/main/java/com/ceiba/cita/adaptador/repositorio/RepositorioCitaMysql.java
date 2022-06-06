@@ -80,10 +80,10 @@ public class RepositorioCitaMysql implements RepositorioCita {
     }
 
     @Override
-    public Integer existeDisponibilidadJornada(LocalDate fecha, JornadaCita jornadaCita) {
+    public Integer existeDisponibilidadJornada(LocalDate fecha, String jornadaCita) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("fecha",fecha.toString());
-        parameterSource.addValue("jornada",jornadaCita.name());
+        parameterSource.addValue("jornada",jornadaCita);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExisteDisponibilidadJornada,parameterSource,Integer.class);

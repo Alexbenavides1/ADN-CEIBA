@@ -14,5 +14,5 @@ public class SolicitudAsignarCita {
     private Afiliado afiliado;
     private Procedimiento procedimiento;
     private LocalDate fecha;
-    private JornadaCita jornadaCita;
+    private String jornadaCita;
 }

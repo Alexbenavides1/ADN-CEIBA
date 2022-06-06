@@ -36,7 +36,7 @@ class CitaTest {
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
                 .conFecha(LocalDate.parse("2022-06-13"))
-                .conJornada(JornadaCita.M)
+                .conJornada("M")
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
@@ -59,7 +59,7 @@ class CitaTest {
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
                 .conFecha(LocalDate.parse("2022-06-13"))
-                .conJornada(JornadaCita.M)
+                .conJornada("M")
                 .conValorCopago(69000.0)
                 .conEstado(EstadoCita.PENDIENTE)
                 .reconstruir();
@@ -92,7 +92,7 @@ class CitaTest {
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
                 .conFecha(LocalDate.parse("2022-06-13"))
-                .conJornada(JornadaCita.T)
+                .conJornada("T")
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
@@ -121,7 +121,7 @@ class CitaTest {
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
                 .conFecha(LocalDate.parse("2022-06-13"))
-                .conJornada(JornadaCita.M)
+                .conJornada("M")
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
@@ -150,7 +150,7 @@ class CitaTest {
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
                 .conFecha(LocalDate.parse("2022-06-13"))
-                .conJornada(JornadaCita.T)
+                .conJornada("T")
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
@@ -179,7 +179,7 @@ class CitaTest {
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
                 .conFecha(LocalDate.parse("2022-06-13"))
-                .conJornada(JornadaCita.M)
+                .conJornada("M")
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
@@ -208,7 +208,7 @@ class CitaTest {
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
                 .conFecha(LocalDate.parse("2022-06-13"))
-                .conJornada(JornadaCita.T)
+                .conJornada("T")
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());

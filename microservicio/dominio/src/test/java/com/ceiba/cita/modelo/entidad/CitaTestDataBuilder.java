@@ -12,7 +12,7 @@ public class CitaTestDataBuilder {
 
     private Long id;
     private LocalDate fecha;
-    private JornadaCita jornadaCita;
+    private String jornadaCita;
     private Afiliado afiliado;
     private Procedimiento procedimiento;
     private double valorCopago;
@@ -21,7 +21,7 @@ public class CitaTestDataBuilder {
     public CitaTestDataBuilder conCitaPorDefecto(){
         this.id=2L;
         this.fecha= LocalDate.parse("2022-06-10");
-        this.jornadaCita=JornadaCita.M;
+        this.jornadaCita="M";
         this.afiliado=new AfiliadoTestDataBuilder().conAfiliadoPorDefecto().reconstruir();
         this.procedimiento = new ProcedimientoTestDataBuilder().conProcedimientoPorDefecto().reconstruir();
         this.valorCopago=69000;
@@ -39,7 +39,7 @@ public class CitaTestDataBuilder {
         return  this;
     }
 
-    public CitaTestDataBuilder conJornada(JornadaCita jornadaCita){
+    public CitaTestDataBuilder conJornada(String jornadaCita){
         this.jornadaCita=jornadaCita;
         return  this;
     }

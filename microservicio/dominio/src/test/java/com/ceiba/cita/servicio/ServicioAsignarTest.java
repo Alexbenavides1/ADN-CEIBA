@@ -35,7 +35,7 @@ class ServicioAsignarTest {
         var solicitudCita = new SolicitudCitaTestDataBuilder()
                 .conProcedimiento(procedimiento)
                 .conAfiliado(afiliado)
-                .conJornada(JornadaCita.M)
+                .conJornada("M")
                 .conFecha(LocalDate.parse("2022-06-10"))
                 .build();
 
@@ -54,6 +54,22 @@ class ServicioAsignarTest {
         Assertions.assertEquals(procedimiento, captorCita.getValue().getProcedimiento());
         Assertions.assertEquals(51750, captorCita.getValue().getValorCopago());
         Assertions.assertEquals(1l, idCitaCreada);
+    }
+
+    @Test
+    void asignarCitaConJornadaInvalidaDeberiaLanzarError(){
+
+        var solicitudCita = new SolicitudCitaTestDataBuilder()
+                .conJornada("A")
+                .build();
+
+        var repositorioCita = Mockito.mock(RepositorioCita.class);
+
+        var servicioCita = new ServicioAsignar(repositorioCita);
+
+        BasePrueba.assertThrows(() -> servicioCita.ejecutar(solicitudCita),ExcepcionValorInvalido.class,
+                "Jornada invalida para asignar la cita");
+
     }
 
     @Test

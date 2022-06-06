@@ -30,7 +30,7 @@ public class MapeoCita implements RowMapper<Cita>, MapperResult {
         var identificacionAfiliado=resultSet.getString("identificacion_afiliado");
         var procedimiento=resultSet.getString("codigo_procedimiento");
         var fecha = resultSet.getDate("fecha").toLocalDate();
-        var jornada= JornadaCita.valueOf(resultSet.getString("jornada"));
+        var jornada= resultSet.getString("jornada");
         var valorCopago=resultSet.getDouble("valor_copago");
         var estado= EstadoCita.valueOf(resultSet.getString("estado"));
 

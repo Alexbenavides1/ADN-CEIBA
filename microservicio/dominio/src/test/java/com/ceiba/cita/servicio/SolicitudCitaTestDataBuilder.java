@@ -14,11 +14,11 @@ public class SolicitudCitaTestDataBuilder {
     private Afiliado afiliado;
     private Procedimiento procedimiento;
     private LocalDate fecha;
-    private JornadaCita jornadaCita;
+    private String jornadaCita;
 
     public SolicitudCitaTestDataBuilder() {
         this.fecha= LocalDate.parse("2022-06-10");
-        this.jornadaCita=JornadaCita.M;
+        this.jornadaCita="M";
         this.afiliado=new AfiliadoTestDataBuilder().conAfiliadoPorDefecto().reconstruir();
         this.procedimiento = new ProcedimientoTestDataBuilder().conProcedimientoPorDefecto().reconstruir();
     }
@@ -38,7 +38,7 @@ public class SolicitudCitaTestDataBuilder {
         return  this;
     }
 
-    public SolicitudCitaTestDataBuilder conJornada(JornadaCita jornadaCita){
+    public SolicitudCitaTestDataBuilder conJornada(String jornadaCita){
         this.jornadaCita=jornadaCita;
         return this;
     }
