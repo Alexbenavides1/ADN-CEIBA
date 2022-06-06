@@ -3,7 +3,6 @@ package com.ceiba.cita.adaptador.repositorio;
 import com.ceiba.afiliado.puerto.repositorio.RepositorioAfiliado;
 import com.ceiba.cita.modelo.entidad.Cita;
 import com.ceiba.cita.modelo.entidad.EstadoCita;
-import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.procedimiento.puerto.repositorio.RepositorioProcedimiento;
 import org.springframework.jdbc.core.RowMapper;

@@ -1,7 +1,6 @@
 package com.ceiba.cita.adaptador.repositorio;
 
 import com.ceiba.cita.modelo.entidad.Cita;
-import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.cita.puerto.repositorio.RepositorioCita;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.EjecucionBaseDeDatos;
