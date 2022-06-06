@@ -3,13 +3,11 @@ package com.ceiba.cita.servicio;
 import com.ceiba.BasePrueba;
 import com.ceiba.afiliado.AfiliadoTestDataBuilder;
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
-import com.ceiba.cita.modelo.CitaTestDataBuilder;
 import com.ceiba.cita.modelo.entidad.Cita;
 import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.cita.puerto.repositorio.RepositorioCita;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
-import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.procedimiento.ProcedimientoTestDataBuilder;
 import com.ceiba.procedimiento.modelo.entidad.Procedimiento;
 import org.junit.jupiter.api.Assertions;
@@ -38,7 +36,7 @@ class ServicioAsignarTest {
                 .conProcedimiento(procedimiento)
                 .conAfiliado(afiliado)
                 .conJornada(JornadaCita.M)
-                .conFecha(LocalDate.parse("2022-05-31"))
+                .conFecha(LocalDate.parse("2022-06-10"))
                 .build();
 
         var repositorioCita = Mockito.mock(RepositorioCita.class);
@@ -81,7 +79,7 @@ class ServicioAsignarTest {
                 .build();
 
         var repositorioCita = Mockito.mock(RepositorioCita.class);
-        Mockito.when(repositorioCita.existeDisponibilidadJornada(LocalDate.parse("2022-06-10"),JornadaCita.M)).thenReturn(5);
+        Mockito.when(repositorioCita.existeDisponibilidadJornada(Mockito.any(),Mockito.any())).thenReturn(5);
 
         var servicioCita = new ServicioAsignar(repositorioCita);
 

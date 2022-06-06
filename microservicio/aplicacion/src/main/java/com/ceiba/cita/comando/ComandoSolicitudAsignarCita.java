@@ -1,6 +1,6 @@
 package com.ceiba.cita.comando;
 
-import com.ceiba.cita.modelo.entidad.JornadaCita;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

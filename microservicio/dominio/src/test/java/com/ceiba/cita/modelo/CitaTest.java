@@ -344,7 +344,7 @@ class CitaTest {
     void cancelarCitaEnFechaNoPermitidaDeberiaLanzarError(){
 
         var cita= new CitaTestDataBuilder().conCitaPorDefecto()
-                .conFecha(LocalDate.parse("2022-06-05"))
+                .conFecha(LocalDate.now())
                 .crear();
 
         BasePrueba.assertThrows(() -> cita.cancelar(), ExcepcionValorInvalido.class,
