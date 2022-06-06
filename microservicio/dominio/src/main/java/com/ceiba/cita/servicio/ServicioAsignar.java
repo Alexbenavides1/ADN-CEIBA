@@ -25,15 +25,16 @@ public class ServicioAsignar {
     }
 
     private void existeDisponibilidadJornada(SolicitudAsignarCita solicitudAsignarCita){
-        Integer total = this.repositorioCita.existeDisponibilidadJornada(solicitudAsignarCita.getFecha(),solicitudAsignarCita.getJornada());
+        Integer total = this.repositorioCita.existeDisponibilidadJornada(solicitudAsignarCita.getFecha(),solicitudAsignarCita.getJornadaCita());
 
-        if(total>=5){
+        if(total>4){
             throw new ExcepcionValorInvalido(NO_EXISTEN_CUPOS_DISPONIBLES);
         }
     }
 
     private void existeCitaPendientePorAfiliado(SolicitudAsignarCita solicitudAsignarCita){
         Integer total = this.repositorioCita.existeCitaPendientePorAfiliado(solicitudAsignarCita.getAfiliado().getNumeroIdentificacion());
+
         if(total>0){
             throw new ExcepcionDuplicidad(EXISTE_CITA_PENDIENTE);
         }

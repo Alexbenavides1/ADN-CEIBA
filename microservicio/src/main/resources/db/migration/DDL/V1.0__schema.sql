@@ -7,7 +7,7 @@ create table procedimiento (
 create table afiliado (
  numero_identificacion varchar(50) not null,
  nombre varchar(255) not null,
- nivel int(11) not null,
+ nivel varchar(20) not null,
  primary key (numero_identificacion)
 );
 

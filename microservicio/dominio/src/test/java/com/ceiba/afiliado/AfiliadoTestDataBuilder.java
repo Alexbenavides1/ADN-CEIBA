@@ -2,22 +2,23 @@ package com.ceiba.afiliado;
 
 
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
+import com.ceiba.afiliado.modelo.entidad.NivelAfiliado;
 
 public class AfiliadoTestDataBuilder {
 
     private  String numero_identificacion;
     private  String nombre;
-    private Integer nivel;
+    private NivelAfiliado nivelAfiliado;
 
     public AfiliadoTestDataBuilder conAfiliadoPorDefecto(){
         this.numero_identificacion="1067000000";
         this.nombre="Afiliado 1";
-        this.nivel=1;
+        this.nivelAfiliado=NivelAfiliado.NIVEL_I;
         return this;
     }
 
     public Afiliado reconstruir(){
-        return Afiliado.reconstruir(numero_identificacion,nombre,nivel);
+        return Afiliado.reconstruir(numero_identificacion,nombre,nivelAfiliado);
     }
 
     public AfiliadoTestDataBuilder conNumeroIdentificacion(String numero_identificacion){
@@ -30,8 +31,8 @@ public class AfiliadoTestDataBuilder {
         return this;
     }
 
-    public AfiliadoTestDataBuilder conNivel(Integer nivel){
-        this.nivel=nivel;
+    public AfiliadoTestDataBuilder conNivel(NivelAfiliado nivelAfiliado){
+        this.nivelAfiliado=nivelAfiliado;
         return  this;
     }
 

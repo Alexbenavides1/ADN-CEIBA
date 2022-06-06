@@ -1,5 +1,6 @@
 package com.ceiba.cita.comando;
 
+import com.ceiba.cita.modelo.entidad.JornadaCita;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ public class ComandoSolicitudAsignarCita {
     private String identificacionAfiliado;
     private String codigoProcedimiento;
     private LocalDate fecha;
-    private String jornada;
+    private String jornadaCita;
 
 }
 

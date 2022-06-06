@@ -3,7 +3,9 @@ package com.ceiba.cita.modelo;
 import com.ceiba.BasePrueba;
 import com.ceiba.afiliado.AfiliadoTestDataBuilder;
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
+import com.ceiba.afiliado.modelo.entidad.NivelAfiliado;
 import com.ceiba.cita.modelo.entidad.EstadoCita;
+import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.procedimiento.ProcedimientoTestDataBuilder;
@@ -23,7 +25,7 @@ class CitaTest {
         Afiliado afiliado = new AfiliadoTestDataBuilder()
                 .conAfiliadoPorDefecto()
                 .conNumeroIdentificacion("11111111")
-                .conNivel(1)
+                .conNivel(NivelAfiliado.NIVEL_I)
                 .reconstruir();
 
         Procedimiento procedimiento = new ProcedimientoTestDataBuilder()
@@ -35,13 +37,13 @@ class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-03"))
-                .conJornada("M")
+                .conFecha(LocalDate.parse("2022-06-13"))
+                .conJornada(JornadaCita.M)
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
-        Assertions.assertEquals("M",cita.getJornada());
+        Assertions.assertEquals("M",cita.getJornada().name());
         Assertions.assertEquals(57500,cita.getValorCopago());
 
     }
@@ -58,8 +60,8 @@ class CitaTest {
                 .conId(1L)
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-10"))
-                .conJornada("M")
+                .conFecha(LocalDate.parse("2022-06-13"))
+                .conJornada(JornadaCita.M)
                 .conValorCopago(69000.0)
                 .conEstado(EstadoCita.PENDIENTE)
                 .reconstruir();
@@ -67,7 +69,7 @@ class CitaTest {
         Assertions.assertEquals(1L,cita.getId());
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
-        Assertions.assertEquals("M",cita.getJornada());
+        Assertions.assertEquals("M",cita.getJornada().name());
         Assertions.assertEquals(69000.0,cita.getValorCopago());
         Assertions.assertTrue(cita.esPendiente());
         Assertions.assertFalse(cita.esCancelada());
@@ -79,7 +81,7 @@ class CitaTest {
         Afiliado afiliado = new AfiliadoTestDataBuilder()
                 .conAfiliadoPorDefecto()
                 .conNumeroIdentificacion("22222222")
-                .conNivel(1)
+                .conNivel(NivelAfiliado.NIVEL_I)
                 .reconstruir();
 
         Procedimiento procedimiento = new ProcedimientoTestDataBuilder()
@@ -91,13 +93,13 @@ class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-03"))
-                .conJornada("T")
+                .conFecha(LocalDate.parse("2022-06-13"))
+                .conJornada(JornadaCita.T)
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
-        Assertions.assertEquals("T",cita.getJornada());
+        Assertions.assertEquals("T",cita.getJornada().name());
         Assertions.assertEquals(272924,cita.getValorCopago());
 
     }
@@ -108,7 +110,7 @@ class CitaTest {
         Afiliado afiliado = new AfiliadoTestDataBuilder()
                 .conAfiliadoPorDefecto()
                 .conNumeroIdentificacion("33333333")
-                .conNivel(2)
+                .conNivel(NivelAfiliado.NIVEL_II)
                 .reconstruir();
 
         Procedimiento procedimiento = new ProcedimientoTestDataBuilder()
@@ -120,13 +122,13 @@ class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-07"))
-                .conJornada("M")
+                .conFecha(LocalDate.parse("2022-06-13"))
+                .conJornada(JornadaCita.M)
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
-        Assertions.assertEquals("M",cita.getJornada());
+        Assertions.assertEquals("M",cita.getJornada().name());
         Assertions.assertEquals(121100,Math.ceil(cita.getValorCopago()));
 
     }
@@ -137,7 +139,7 @@ class CitaTest {
         Afiliado afiliado = new AfiliadoTestDataBuilder()
                 .conAfiliadoPorDefecto()
                 .conNumeroIdentificacion("44444444")
-                .conNivel(2)
+                .conNivel(NivelAfiliado.NIVEL_II)
                 .reconstruir();
 
         Procedimiento procedimiento = new ProcedimientoTestDataBuilder()
@@ -149,13 +151,13 @@ class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-08"))
-                .conJornada("T")
+                .conFecha(LocalDate.parse("2022-06-13"))
+                .conJornada(JornadaCita.T)
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
-        Assertions.assertEquals("T",cita.getJornada());
+        Assertions.assertEquals("T",cita.getJornada().name());
         Assertions.assertEquals(1093597,cita.getValorCopago());
 
     }
@@ -166,7 +168,7 @@ class CitaTest {
         Afiliado afiliado = new AfiliadoTestDataBuilder()
                 .conAfiliadoPorDefecto()
                 .conNumeroIdentificacion("55555555")
-                .conNivel(3)
+                .conNivel(NivelAfiliado.NIVEL_III)
                 .reconstruir();
 
         Procedimiento procedimiento = new ProcedimientoTestDataBuilder()
@@ -178,13 +180,13 @@ class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-08"))
-                .conJornada("M")
+                .conFecha(LocalDate.parse("2022-06-13"))
+                .conJornada(JornadaCita.M)
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
-        Assertions.assertEquals("M",cita.getJornada());
+        Assertions.assertEquals("M",cita.getJornada().name());
         Assertions.assertEquals(149500,cita.getValorCopago());
 
     }
@@ -195,7 +197,7 @@ class CitaTest {
         Afiliado afiliado = new AfiliadoTestDataBuilder()
                 .conAfiliadoPorDefecto()
                 .conNumeroIdentificacion("66666666")
-                .conNivel(3)
+                .conNivel(NivelAfiliado.NIVEL_III)
                 .reconstruir();
 
         Procedimiento procedimiento = new ProcedimientoTestDataBuilder()
@@ -207,13 +209,13 @@ class CitaTest {
         var cita = new CitaTestDataBuilder()
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
-                .conFecha(LocalDate.parse("2022-06-09"))
-                .conJornada("T")
+                .conFecha(LocalDate.parse("2022-06-13"))
+                .conJornada(JornadaCita.T)
                 .crear();
 
         Assertions.assertEquals(afiliado,cita.getAfiliado());
         Assertions.assertEquals(procedimiento,cita.getProcedimiento());
-        Assertions.assertEquals("T",cita.getJornada());
+        Assertions.assertEquals("T",cita.getJornada().name());
         Assertions.assertEquals(2187195,cita.getValorCopago());
 
     }
@@ -243,9 +245,17 @@ class CitaTest {
     }
 
     @Test
-    void citaConFechaNoPermitidaDeberiaLanzarError(){
+    void citaConFechaNoValidaDeberiaLanzarError(){
         BasePrueba.assertThrows(() -> new CitaTestDataBuilder().conCitaPorDefecto()
                         .conFecha(LocalDate.parse("2022-06-04"))
+                        .crear(), ExcepcionValorInvalido.class,
+                "No se permiten asignar citas con fecha anterior a la actual");
+    }
+
+    @Test
+    void citaConFechaNoPermitidaDeberiaLanzarError(){
+        BasePrueba.assertThrows(() -> new CitaTestDataBuilder().conCitaPorDefecto()
+                        .conFecha(LocalDate.parse("2022-06-11"))
                         .crear(), ExcepcionValorInvalido.class,
                 "No se permiten citas los dias Sabado y Domingo");
     }
@@ -274,9 +284,17 @@ class CitaTest {
                 "La fecha es requerida para asignar la cita");
     }
     @Test
-    void reconstruirCitaConFechaNoPermitidaDeberiaLanzarError(){
+    void reconstruirCitaConFechaNoValidaDeberiaLanzarError(){
         BasePrueba.assertThrows(() -> new CitaTestDataBuilder().conCitaPorDefecto()
                         .conFecha(LocalDate.parse("2022-06-04"))
+                        .reconstruir(), ExcepcionValorInvalido.class,
+                "No se permiten asignar citas con fecha anterior a la actual");
+    }
+
+    @Test
+    void reconstruirCitaConFechaNoPermitidaDeberiaLanzarError(){
+        BasePrueba.assertThrows(() -> new CitaTestDataBuilder().conCitaPorDefecto()
+                        .conFecha(LocalDate.parse("2022-06-11"))
                         .reconstruir(), ExcepcionValorInvalido.class,
                 "No se permiten citas los dias Sabado y Domingo");
     }
@@ -326,7 +344,7 @@ class CitaTest {
     void cancelarCitaEnFechaNoPermitidaDeberiaLanzarError(){
 
         var cita= new CitaTestDataBuilder().conCitaPorDefecto()
-                .conFecha(LocalDate.parse("2022-05-27"))
+                .conFecha(LocalDate.parse("2022-06-05"))
                 .crear();
 
         BasePrueba.assertThrows(() -> cita.cancelar(), ExcepcionValorInvalido.class,

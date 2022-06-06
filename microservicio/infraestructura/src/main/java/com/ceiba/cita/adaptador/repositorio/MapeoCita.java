@@ -3,6 +3,7 @@ package com.ceiba.cita.adaptador.repositorio;
 import com.ceiba.afiliado.puerto.repositorio.RepositorioAfiliado;
 import com.ceiba.cita.modelo.entidad.Cita;
 import com.ceiba.cita.modelo.entidad.EstadoCita;
+import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.procedimiento.puerto.repositorio.RepositorioProcedimiento;
 import org.springframework.jdbc.core.RowMapper;
@@ -29,7 +30,7 @@ public class MapeoCita implements RowMapper<Cita>, MapperResult {
         var identificacionAfiliado=resultSet.getString("identificacion_afiliado");
         var procedimiento=resultSet.getString("codigo_procedimiento");
         var fecha = resultSet.getDate("fecha").toLocalDate();
-        var jornada=resultSet.getString("jornada");
+        var jornada= JornadaCita.valueOf(resultSet.getString("jornada"));
         var valorCopago=resultSet.getDouble("valor_copago");
         var estado= EstadoCita.valueOf(resultSet.getString("estado"));
 

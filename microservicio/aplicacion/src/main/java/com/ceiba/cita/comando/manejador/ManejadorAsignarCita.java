@@ -20,6 +20,7 @@ public class ManejadorAsignarCita implements ManejadorComandoRespuesta<ComandoSo
 
     @Override
     public ComandoRespuesta<Long> ejecutar(ComandoSolicitudAsignarCita comandoSolicitudAsignarCita) {
+
         return new ComandoRespuesta<>(servicioAsignar
                 .ejecutar(fabricaSolicitudAsignarCita.crear(comandoSolicitudAsignarCita)));
     }

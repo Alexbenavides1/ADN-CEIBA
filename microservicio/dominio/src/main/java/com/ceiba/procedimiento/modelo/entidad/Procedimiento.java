@@ -8,7 +8,7 @@ public class Procedimiento {
     private String nombre;
     private Double valor;
 
-    public Procedimiento(String codigo, String nombre, Double valor) {
+    protected Procedimiento(String codigo, String nombre, Double valor) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.valor = valor;

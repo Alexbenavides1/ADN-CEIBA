@@ -1,6 +1,7 @@
 package com.ceiba.afiliado.adaptador.repositorio;
 
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
+import com.ceiba.afiliado.modelo.entidad.NivelAfiliado;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -13,9 +14,9 @@ public class MapeoAfiliado implements RowMapper<Afiliado>, MapperResult {
     public Afiliado mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         var numeroIdentificacion=resultSet.getString("numero_identificacion");
         var nombre=resultSet.getString("nombre");
-        var nivel=resultSet.getInt("nivel");
+        var nivelAfiliado= NivelAfiliado.valueOf(resultSet.getString("nivel"));
 
-        return Afiliado.reconstruir(numeroIdentificacion,nombre,nivel);
+        return Afiliado.reconstruir(numeroIdentificacion,nombre,nivelAfiliado);
     }
 
 }

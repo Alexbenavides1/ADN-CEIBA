@@ -2,6 +2,7 @@ package com.ceiba.cita.servicio;
 
 import com.ceiba.afiliado.AfiliadoTestDataBuilder;
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
+import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.cita.modelo.entidad.SolicitudAsignarCita;
 import com.ceiba.procedimiento.ProcedimientoTestDataBuilder;
 import com.ceiba.procedimiento.modelo.entidad.Procedimiento;
@@ -13,11 +14,11 @@ public class SolicitudCitaTestDataBuilder {
     private Afiliado afiliado;
     private Procedimiento procedimiento;
     private LocalDate fecha;
-    private String jornada;
+    private JornadaCita jornadaCita;
 
     public SolicitudCitaTestDataBuilder() {
         this.fecha= LocalDate.parse("2022-06-10");
-        this.jornada="M";
+        this.jornadaCita=JornadaCita.M;
         this.afiliado=new AfiliadoTestDataBuilder().conAfiliadoPorDefecto().reconstruir();
         this.procedimiento = new ProcedimientoTestDataBuilder().conProcedimientoPorDefecto().reconstruir();
     }
@@ -37,13 +38,13 @@ public class SolicitudCitaTestDataBuilder {
         return  this;
     }
 
-    public SolicitudCitaTestDataBuilder conJornada(String jornada){
-        this.jornada=jornada;
+    public SolicitudCitaTestDataBuilder conJornada(JornadaCita jornadaCita){
+        this.jornadaCita=jornadaCita;
         return this;
     }
 
     public SolicitudAsignarCita build(){
-        return  new SolicitudAsignarCita(afiliado,procedimiento,fecha,jornada);
+        return  new SolicitudAsignarCita(afiliado,procedimiento,fecha,jornadaCita);
     }
 
 }

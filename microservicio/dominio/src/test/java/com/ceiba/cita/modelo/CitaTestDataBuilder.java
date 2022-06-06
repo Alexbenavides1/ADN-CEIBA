@@ -4,6 +4,7 @@ import com.ceiba.afiliado.AfiliadoTestDataBuilder;
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
 import com.ceiba.cita.modelo.entidad.Cita;
 import com.ceiba.cita.modelo.entidad.EstadoCita;
+import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.cita.servicio.SolicitudCitaTestDataBuilder;
 import com.ceiba.procedimiento.ProcedimientoTestDataBuilder;
 import com.ceiba.procedimiento.modelo.entidad.Procedimiento;
@@ -14,7 +15,7 @@ public class CitaTestDataBuilder {
 
     private Long id;
     private LocalDate fecha;
-    private String jornada;
+    private JornadaCita jornadaCita;
     private Afiliado afiliado;
     private Procedimiento procedimiento;
     private double valorCopago;
@@ -23,7 +24,7 @@ public class CitaTestDataBuilder {
     public CitaTestDataBuilder conCitaPorDefecto(){
         this.id=2L;
         this.fecha= LocalDate.parse("2022-06-10");
-        this.jornada="M";
+        this.jornadaCita=JornadaCita.M;
         this.afiliado=new AfiliadoTestDataBuilder().conAfiliadoPorDefecto().reconstruir();
         this.procedimiento = new ProcedimientoTestDataBuilder().conProcedimientoPorDefecto().reconstruir();
         this.valorCopago=69000;
@@ -41,8 +42,8 @@ public class CitaTestDataBuilder {
         return  this;
     }
 
-    public CitaTestDataBuilder conJornada(String jornada){
-        this.jornada=jornada;
+    public CitaTestDataBuilder conJornada(JornadaCita jornadaCita){
+        this.jornadaCita=jornadaCita;
         return  this;
     }
 
@@ -70,10 +71,10 @@ public class CitaTestDataBuilder {
                 .conAfiliado(afiliado)
                 .conProcedimiento(procedimiento)
                 .conFecha(fecha)
-                .conJornada(jornada)
+                .conJornada(jornadaCita)
                 .build());
     }
     public Cita reconstruir(){
-        return Cita.reconstruir(id,fecha,jornada,afiliado,procedimiento,valorCopago,estado);
+        return Cita.reconstruir(id,fecha,jornadaCita,afiliado,procedimiento,valorCopago,estado);
     }
 }

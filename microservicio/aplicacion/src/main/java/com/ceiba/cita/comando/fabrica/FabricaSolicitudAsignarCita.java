@@ -2,6 +2,7 @@ package com.ceiba.cita.comando.fabrica;
 
 import com.ceiba.afiliado.puerto.repositorio.RepositorioAfiliado;
 import com.ceiba.cita.comando.ComandoSolicitudAsignarCita;
+import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.cita.modelo.entidad.SolicitudAsignarCita;
 import com.ceiba.procedimiento.puerto.repositorio.RepositorioProcedimiento;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class FabricaSolicitudAsignarCita {
         return new SolicitudAsignarCita(repositorioAfiliado.obtenerAfiliado(comandoSolicitudAsignarCita.getIdentificacionAfiliado()),
                 repositorioProcedimiento.obtener(comandoSolicitudAsignarCita.getCodigoProcedimiento()),
                 comandoSolicitudAsignarCita.getFecha(),
-                comandoSolicitudAsignarCita.getJornada()
+                JornadaCita.valueOf(comandoSolicitudAsignarCita.getJornadaCita())
                 );
     }
 }

@@ -1,6 +1,7 @@
 package com.ceiba.cita.adaptador.repositorio;
 
 import com.ceiba.cita.modelo.entidad.Cita;
+import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.cita.puerto.repositorio.RepositorioCita;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.EjecucionBaseDeDatos;
@@ -50,7 +51,7 @@ public class RepositorioCitaMysql implements RepositorioCita {
         parameterSource.addValue(PARAMETRO_IDENTIFICACION,cita.getAfiliado().getNumeroIdentificacion());
         parameterSource.addValue("codigo_procedimiento",cita.getProcedimiento().getCodigo());
         parameterSource.addValue("fecha",cita.getFecha());
-        parameterSource.addValue("jornada",cita.getJornada());
+        parameterSource.addValue("jornada",cita.getJornada().name());
         parameterSource.addValue("valor_copago",cita.getValorCopago());
         parameterSource.addValue("estado",cita.getEstado().name());
 
@@ -79,10 +80,10 @@ public class RepositorioCitaMysql implements RepositorioCita {
     }
 
     @Override
-    public Integer existeDisponibilidadJornada(LocalDate fecha, String jornada) {
+    public Integer existeDisponibilidadJornada(LocalDate fecha, JornadaCita jornadaCita) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("fecha",fecha.toString());
-        parameterSource.addValue("jornada",jornada);
+        parameterSource.addValue("jornada",jornadaCita.name());
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExisteDisponibilidadJornada,parameterSource,Integer.class);

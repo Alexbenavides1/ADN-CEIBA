@@ -2,6 +2,7 @@ package com.ceiba.cita.modelo.entidad;
 
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
 
+import com.ceiba.afiliado.modelo.entidad.NivelAfiliado;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.procedimiento.modelo.entidad.Procedimiento;
 
@@ -23,25 +24,25 @@ public class Cita {
 
     private Long id;
     private LocalDate fecha;
-    private String jornada;
+    private JornadaCita jornadaCita;
     private Afiliado afiliado;
     private Procedimiento procedimiento;
     private double valorCopago;
     private EstadoCita estado;
 
-    public Cita( LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento) {
+    protected Cita( LocalDate fecha, JornadaCita jornadaCita, Afiliado afiliado, Procedimiento procedimiento) {
         this.fecha = fecha;
-        this.jornada = jornada;
+        this.jornadaCita = jornadaCita;
         this.afiliado = afiliado;
         this.procedimiento = procedimiento;
         this.valorCopago = calcularValorCopago(afiliado.getNivel(),procedimiento.getValor());
         this.estado=EstadoCita.PENDIENTE;
     }
 
-    public Cita(Long id, LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento, double valorCopago, EstadoCita estado) {
+    protected Cita(Long id, LocalDate fecha, JornadaCita jornadaCita, Afiliado afiliado, Procedimiento procedimiento, double valorCopago, EstadoCita estado) {
         this.id = id;
         this.fecha = fecha;
-        this.jornada = jornada;
+        this.jornadaCita = jornadaCita;
         this.afiliado = afiliado;
         this.procedimiento = procedimiento;
         this.valorCopago = valorCopago;
@@ -56,8 +57,8 @@ public class Cita {
         return fecha;
     }
 
-    public String getJornada() {
-        return jornada;
+    public JornadaCita getJornada() {
+        return jornadaCita;
     }
 
     public Afiliado getAfiliado() {
@@ -76,17 +77,20 @@ public class Cita {
         return estado;
     }
 
-    public double calcularValorCopago(int nivel, Double valorProcedimiento) {
-        switch (nivel){
-            case 1:
-                return calcularCopagoNivel1(valorProcedimiento);
-            case 2:
-                return calcularCopagoNivel2(valorProcedimiento);
-            case 3:
-                return calcularCopagoNivel3(valorProcedimiento);
-            default:
-                return 0;
+    public double calcularValorCopago(NivelAfiliado nivelAfiliado, Double valorProcedimiento) {
+
+        double valor=0;
+
+        if(nivelAfiliado.equals(NivelAfiliado.NIVEL_I)){
+             valor=calcularCopagoNivel1(valorProcedimiento);
         }
+        if(nivelAfiliado.equals(NivelAfiliado.NIVEL_II)){
+            valor=calcularCopagoNivel2(valorProcedimiento);
+        }
+        if(nivelAfiliado.equals(NivelAfiliado.NIVEL_III)){
+            valor=calcularCopagoNivel3(valorProcedimiento);
+        }
+        return valor;
     }
 
     public double calcularCopagoNivel1(Double valorProcedimiento){
@@ -105,28 +109,37 @@ public class Cita {
     }
 
     public static Cita crear(SolicitudAsignarCita solicitudAsignarCita){
+
         validarObligatorio(solicitudAsignarCita.getAfiliado(),"El afiliado es requerido para asignar la cita");
         validarObligatorio(solicitudAsignarCita.getProcedimiento(),"El procedimiento es requerido para asignar la cita");
         validarObligatorio(solicitudAsignarCita.getFecha(),"La fecha es requerida para asignar la cita");
-        validarObligatorio(solicitudAsignarCita.getJornada(),"La jornada es requerida para asignar la cita");
+        validarObligatorio(solicitudAsignarCita.getJornadaCita(),"La jornada es requerida para asignar la cita");
+
+        if(!esFechaValida(solicitudAsignarCita.getFecha())){
+            throw new ExcepcionValorInvalido("No se permiten asignar citas con fecha anterior a la actual");
+        }
 
         if(!esDiaHabil(solicitudAsignarCita.getFecha())){
             throw new ExcepcionValorInvalido("No se permiten citas los dias Sabado y Domingo");
         }
 
-        return new Cita(solicitudAsignarCita.getFecha(), solicitudAsignarCita.getJornada(), solicitudAsignarCita.getAfiliado(), solicitudAsignarCita.getProcedimiento());
+        return new Cita(solicitudAsignarCita.getFecha(), solicitudAsignarCita.getJornadaCita(), solicitudAsignarCita.getAfiliado(), solicitudAsignarCita.getProcedimiento());
 
     }
 
-    public static Cita reconstruir(Long id, LocalDate fecha, String jornada, Afiliado afiliado, Procedimiento procedimiento, double valorCopago, EstadoCita estado) {
+    public static Cita reconstruir(Long id, LocalDate fecha, JornadaCita jornadaCita, Afiliado afiliado, Procedimiento procedimiento, double valorCopago, EstadoCita estado) {
         validarObligatorio(id,"El id es requerido para asignar la cita");
         validarObligatorio(fecha,"La fecha es requerida para asignar la cita");
+
+        if(!esFechaValida(fecha)){
+            throw new ExcepcionValorInvalido("No se permiten asignar citas con fecha anterior a la actual");
+        }
 
         if(!esDiaHabil(fecha)){
             throw new ExcepcionValorInvalido("No se permiten citas los dias Sabado y Domingo");
         }
 
-        validarObligatorio(jornada,"La jornada es requerida para asignar la cita");
+        validarObligatorio(jornadaCita,"La jornada es requerida para asignar la cita");
         validarObligatorio(afiliado,"El afiliado es requerido para asignar la cita");
         validarObligatorio(procedimiento,"El procedimiento es requerido para asignar la cita");
 
@@ -134,7 +147,7 @@ public class Cita {
             throw new ExcepcionValorInvalido("El valor del copago no puede ser menor o igual a 0");
         }
 
-        return new Cita(id,fecha,jornada,afiliado,procedimiento,valorCopago,estado);
+        return new Cita(id,fecha,jornadaCita,afiliado,procedimiento,valorCopago,estado);
     }
 
     public void cancelar(){
@@ -151,6 +164,14 @@ public class Cita {
         boolean res=true;
         if(fechaActual.equals(fecha) || fechaActual.isAfter(fecha) || !esDiaHabil(fechaActual)){
             res= false;
+        }
+        return res;
+    }
+
+    public static boolean esFechaValida(LocalDate fecha){
+        boolean res=true;
+        if(LocalDate.now().isAfter(fecha)){
+           res=false;
         }
         return res;
     }

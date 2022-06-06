@@ -5,6 +5,7 @@ import com.ceiba.afiliado.AfiliadoTestDataBuilder;
 import com.ceiba.afiliado.modelo.entidad.Afiliado;
 import com.ceiba.cita.modelo.CitaTestDataBuilder;
 import com.ceiba.cita.modelo.entidad.Cita;
+import com.ceiba.cita.modelo.entidad.JornadaCita;
 import com.ceiba.cita.puerto.repositorio.RepositorioCita;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
@@ -36,7 +37,7 @@ class ServicioAsignarTest {
         var solicitudCita = new SolicitudCitaTestDataBuilder()
                 .conProcedimiento(procedimiento)
                 .conAfiliado(afiliado)
-                .conJornada("M")
+                .conJornada(JornadaCita.M)
                 .conFecha(LocalDate.parse("2022-05-31"))
                 .build();
 
@@ -60,103 +61,32 @@ class ServicioAsignarTest {
     @Test
     void asignarCitaAfiliadoConCitaPendienteDeberiaLanzarError(){
 
+        var solicitudCita = new SolicitudCitaTestDataBuilder()
+                .build();
 
-        var solicitudCita=new SolicitudCitaTestDataBuilder().build();
-        RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
-        Mockito.when(repositorioCita.guardar(Mockito.any())).thenReturn(1L);
-        ServicioAsignar servicioAsignar = new ServicioAsignar(repositorioCita);
+        var repositorioCita = Mockito.mock(RepositorioCita.class);
+        Mockito.when(repositorioCita.existeCitaPendientePorAfiliado(Mockito.anyString())).thenReturn(1);
 
-        //BasePrueba.assertThrows(() -> servicioAsignar.ejecutar(solicitudCita),ExcepcionDuplicidad.class,"No se puede asignar la cita porque el afiliado ya cuenta con una cita pendiente");
+        var servicioCita = new ServicioAsignar(repositorioCita);
+
+        BasePrueba.assertThrows(() -> servicioCita.ejecutar(solicitudCita),ExcepcionDuplicidad.class,
+                "No se puede asignar la cita porque el afiliado ya cuenta con una cita pendiente");
+
     }
 
     @Test
     void asignarCitaSinCuposDisponiblesDeberiaLanzarError(){
 
-        var solicitudCita1 = new SolicitudCitaTestDataBuilder()
-                .conProcedimiento(new ProcedimientoTestDataBuilder()
-                        .conProcedimientoPorDefecto()
-                        .reconstruir())
-                .conAfiliado(new AfiliadoTestDataBuilder()
-                        .conAfiliadoPorDefecto()
-                        .conNumeroIdentificacion("1067666666")
-                        .reconstruir())
-                .conJornada("M")
-                .conFecha(LocalDate.parse("2022-06-07"))
-                .build();
-
-        var solicitudCita2 = new SolicitudCitaTestDataBuilder()
-                .conProcedimiento(new ProcedimientoTestDataBuilder()
-                        .conProcedimientoPorDefecto()
-                        .reconstruir())
-                .conAfiliado(new AfiliadoTestDataBuilder()
-                        .conAfiliadoPorDefecto()
-                        .conNumeroIdentificacion("1067777777")
-                        .reconstruir())
-                .conJornada("M")
-                .conFecha(LocalDate.parse("2022-06-07"))
-                .build();
-
-        var solicitudCita3 = new SolicitudCitaTestDataBuilder()
-                .conProcedimiento(new ProcedimientoTestDataBuilder()
-                        .conProcedimientoPorDefecto()
-                        .reconstruir())
-                .conAfiliado(new AfiliadoTestDataBuilder()
-                        .conAfiliadoPorDefecto()
-                        .conNumeroIdentificacion("1067888888")
-                        .reconstruir())
-                .conJornada("M")
-                .conFecha(LocalDate.parse("2022-06-07"))
-                .build();
-
-        var solicitudCita4 = new SolicitudCitaTestDataBuilder()
-                .conProcedimiento(new ProcedimientoTestDataBuilder()
-                        .conProcedimientoPorDefecto()
-                        .reconstruir())
-                .conAfiliado(new AfiliadoTestDataBuilder()
-                        .conAfiliadoPorDefecto()
-                        .conNumeroIdentificacion("1067999999")
-                        .reconstruir())
-                .conJornada("M")
-                .conFecha(LocalDate.parse("2022-06-07"))
-                .build();
-
-        var solicitudCita5 = new SolicitudCitaTestDataBuilder()
-                .conProcedimiento(new ProcedimientoTestDataBuilder()
-                        .conProcedimientoPorDefecto()
-                        .reconstruir())
-                .conAfiliado(new AfiliadoTestDataBuilder()
-                        .conAfiliadoPorDefecto()
-                        .conNumeroIdentificacion("1067000000")
-                        .reconstruir())
-                .conJornada("M")
-                .conFecha(LocalDate.parse("2022-06-07"))
-                .build();
-
-        var solicitudCita6 = new SolicitudCitaTestDataBuilder()
-                .conProcedimiento(new ProcedimientoTestDataBuilder()
-                        .conProcedimientoPorDefecto()
-                        .reconstruir())
-                .conAfiliado(new AfiliadoTestDataBuilder()
-                        .conAfiliadoPorDefecto()
-                        .conNumeroIdentificacion("10673333333")
-                        .reconstruir())
-                .conJornada("M")
-                .conFecha(LocalDate.parse("2022-06-07"))
+        var solicitudCita = new SolicitudCitaTestDataBuilder()
                 .build();
 
         var repositorioCita = Mockito.mock(RepositorioCita.class);
+        Mockito.when(repositorioCita.existeDisponibilidadJornada(LocalDate.parse("2022-06-10"),JornadaCita.M)).thenReturn(5);
 
         var servicioCita = new ServicioAsignar(repositorioCita);
 
-        servicioCita.ejecutar(solicitudCita1);
-        servicioCita.ejecutar(solicitudCita2);
-        servicioCita.ejecutar(solicitudCita3);
-        servicioCita.ejecutar(solicitudCita4);
-        servicioCita.ejecutar(solicitudCita5);
-
-       // BasePrueba.assertThrows(() -> servicioCita.
-       //         ejecutar(solicitudCita6), ExcepcionValorInvalido.class, "No existen cupos disponibles en la fecha y jornada seleccionada");
-
+        BasePrueba.assertThrows(() -> servicioCita.
+                ejecutar(solicitudCita), ExcepcionValorInvalido.class, "No existen cupos disponibles en la fecha y jornada seleccionada");
 
     }
 }

@@ -6,19 +6,19 @@ public class Afiliado {
 
     private final String numeroIdentificacion;
     private final String nombre;
-    private Integer nivel;
+    private NivelAfiliado nivelAfiliado;
 
-    public Afiliado(String numeroIdentificacion, String nombre, Integer nivel) {
+    protected Afiliado(String numeroIdentificacion, String nombre, NivelAfiliado nivelAfiliado) {
         this.numeroIdentificacion = numeroIdentificacion;
         this.nombre = nombre;
-        this.nivel = nivel;
+        this.nivelAfiliado = nivelAfiliado;
     }
 
-    public static Afiliado reconstruir(String numeroIdentificacion, String nombre, Integer nivel){
+    public static Afiliado reconstruir(String numeroIdentificacion, String nombre, NivelAfiliado nivelAfiliado){
         validarObligatorio(numeroIdentificacion,"Numero de identificación del afiliado es requerido");
         validarObligatorio(nombre,"Nombre del afiliado es requerido");
-        validarObligatorio(nivel,"Nivel del afiliado es requerido");
-        return new Afiliado(numeroIdentificacion,nombre,nivel);
+        validarObligatorio(nivelAfiliado,"Nivel del afiliado es requerido");
+        return new Afiliado(numeroIdentificacion,nombre,nivelAfiliado);
     }
 
     public String getNumeroIdentificacion() {
@@ -29,7 +29,7 @@ public class Afiliado {
         return nombre;
     }
 
-    public Integer getNivel() {
-        return nivel;
+    public NivelAfiliado getNivel() {
+        return nivelAfiliado;
     }
 }
