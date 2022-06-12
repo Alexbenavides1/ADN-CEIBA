@@ -21,6 +21,7 @@ public class ResumenCitaDTOTest {
         Assertions.assertEquals("808081",resumen.getCodigoProcedimiento());
         Assertions.assertEquals("Proc Prueba",resumen.getNombreProcedimiento());
         Assertions.assertEquals("M",resumen.getJornada());
+        Assertions.assertEquals(LocalDate.parse("2022-06-10"),resumen.getFecha());
         Assertions.assertEquals(34900.0,resumen.getValorCopago());
         Assertions.assertEquals(EstadoCita.PENDIENTE,resumen.getEstado());
 

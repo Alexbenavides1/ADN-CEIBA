@@ -8,7 +8,7 @@ public interface RepositorioCita {
 
     Long guardar(Cita cita);
     Cita obtener(Long id);
-    void actualizarEstado(Cita cita);
+    int actualizarEstado(Cita cita);
     Integer existeDisponibilidadJornada(LocalDate fecha, String jornadaCita);
     Integer existeCitaPendientePorAfiliado(String identificacionAfiliado);
 }

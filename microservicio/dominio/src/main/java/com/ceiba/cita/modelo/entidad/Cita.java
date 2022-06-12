@@ -151,7 +151,7 @@ public class Cita {
     }
 
     public void cancelar(){
-        if(esDiaPermitidoParaCancelar(this.fecha)){
+        if(!esDiaPermitidoParaCancelar(this.fecha)){
             this.estado=EstadoCita.CANCELADA;
         }else{
             throw new ExcepcionValorInvalido("Solo se permite cancelar la cita maximo hasta el dia habil anterior a la fecha de la cita");

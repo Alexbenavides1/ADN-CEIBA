@@ -68,13 +68,13 @@ public class RepositorioCitaMysql implements RepositorioCita {
     }
 
     @Override
-    public void actualizarEstado(Cita cita) {
+    public int actualizarEstado(Cita cita) {
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id",cita.getId());
         parameterSource.addValue("estado",cita.getEstado().toString());
 
-                this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+              return  this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                         .update(sqlActualizarEstado,parameterSource);
     }
 

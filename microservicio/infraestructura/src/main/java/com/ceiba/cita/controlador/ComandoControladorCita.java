@@ -32,7 +32,7 @@ public class ComandoControladorCita {
 
     @PostMapping("cancelar/{id}")
     @Operation(summary = "Cancelar",description = "Metodo utilizado para cancelar una cita")
-    public void cancelar(@PathVariable("id") Long id){
-        this.manejadorCancelar.ejecutar(new ComandoCancelar(id));
+    public Integer cancelar(@PathVariable("id") Long id){
+        return this.manejadorCancelar.ejecutar(new ComandoCancelar(id));
     }
 }

@@ -12,9 +12,9 @@ public class ServicioCancelar {
         this.repositorioCita = repositorioCita;
     }
 
-    public void ejecutar(Cita cita){
+    public Integer ejecutar(Cita cita){
         ValidadorArgumento.validarObligatorio(cita,"No existe una cita para cancelar");
         cita.cancelar();
-        repositorioCita.actualizarEstado(cita);
+       return repositorioCita.actualizarEstado(cita);
     }
 }
